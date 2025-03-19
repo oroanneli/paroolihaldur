@@ -6,12 +6,20 @@ public class HashMapTootlus {
 
     // võtab argumendiks kasutaja sõnastiku ja allika ning prindib välja kasutajanime ja parooli (vajadusel mitu tk)
     public static void kuva(HashMap<String, ArrayList<String[]>> sonastik, String allikas){
+        System.out.println(allikas);
         ArrayList<String[]> vaartused = sonastik.get(allikas); // sõnastiku väärtused
         // System.out.println(Arrays.deepToString(vaartused.toArray()));
 
         for (int i = 0; i < vaartused.size(); i++) { // käib läbi listi ja kuvab kõik kasutajanimed ja paroolid
             String[] list = vaartused.get(i);
             System.out.println("Kasutajanimi: " + list[0] + ", Parool: " + list[1]);
+        }
+    }
+
+    // võtab argumendiks kasutaja sõnastiku ja väljastab kõik salvestatud kasutajanimed ja paroolid
+    public static void kuvaKoik(HashMap<String, ArrayList<String[]>> sonastik){
+        for (String voti : sonastik.keySet()){
+            kuva(sonastik, voti);
         }
     }
 
@@ -22,6 +30,7 @@ public class HashMapTootlus {
 
         // kuvaTest
         // kuva(test, "YouTube");
+        kuvaKoik(test);
 
 
 
