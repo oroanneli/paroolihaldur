@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class HashMapTootlus {
 
@@ -31,6 +32,51 @@ public class HashMapTootlus {
         }
     }
 
+    public static void lisa(HashMap<String, ArrayList<String[]>> sonastik, String allikas, String kasutajanimi, String parool){
+        String[] väärtused = {kasutajanimi, parool};
+        if (sonastik.containsKey(allikas)){ // kui see allikas juba varem olemas
+            sonastik.get(allikas).add(väärtused);
+        }
+        else{ // kui see on esimene kord, kui sellele allikale parool salvestatakse
+            ArrayList<String[]> koik_vaartused = new ArrayList<>();
+            koik_vaartused.add(väärtused);
+            sonastik.put(allikas, koik_vaartused);
+        }
+
+    }
+
+    public static void kustuta(HashMap<String, ArrayList<String[]>> sonastik, String allikas, String kasutajanimi) {
+        if (sonastik.containsKey(allikas)) {
+            ArrayList<String[]> kasutajad = sonastik.get(allikas); // kõik vastava allika väärtused
+            Iterator<String[]> iterator = kasutajad.iterator(); // et käia list läbi
+            boolean leitud = false;
+
+            while (iterator.hasNext()) {
+                String[] paar = iterator.next();
+                String kasutaja = paar[0];
+                String parool = paar[1];
+
+                if (kasutaja.equals(kasutajanimi)) { // oleme õige paari leidnud ning eemaldame selle nüüd
+                    iterator.remove();
+                    System.out.println("Edukalt kustutatud "+allikas+" kasutaja '"+ kasutaja+"' parool '"+parool+"'");
+                    leitud = true;
+                    break;
+                }
+            }
+            if (!leitud){ // juhul kui kogu sõnastik käidi läbi ja ei leitud sobivat paari
+                System.out.println("Kasutajanime '" + kasutajanimi + "' ei leitud allika " + allikas + " paroolide hulgast. Palun kontrollige õigekirja.");
+            }
+            if (kasutajad.isEmpty()) { // kui kustutatud parool oli viimane, eemaldame kogu kirje sõnastikust
+                sonastik.remove(allikas);
+            }
+        }
+        else{ // sonastikus ei leidu sellist võtit
+            System.out.println("Allikat '" + allikas + "' ei leitud salvestatud paroolide hulgast. Palun kontrollige õigekirja");
+        }
+    }
+
+    
+
 
     public static void main(String[] args) {
         // kasutaja sõnastik
@@ -38,7 +84,16 @@ public class HashMapTootlus {
 
         // kuvaTest
         //kuva(test, "YouTube");
-        kuvaKoik(test);
+        //kuvaKoik(test);
+
+//        System.out.println("Siit uus");
+//        lisa(test, "YouTube", "kasutajanimi", "parool");
+//        kuvaKoik(test);
+
+//        kuvaKoik(test);
+//        kustuta(test, "Cocomelon", "beebi");
+//        kuvaKoik(test);
+
 
 
 
