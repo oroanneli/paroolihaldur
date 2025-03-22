@@ -58,7 +58,7 @@ public class HashMapTootlus {
 
                 if (kasutaja.equals(kasutajanimi)) { // oleme õige paari leidnud ning eemaldame selle nüüd
                     iterator.remove();
-                    System.out.println("Edukalt kustutatud "+allikas+" kasutaja '"+ kasutaja+"' parool '"+parool+"'");
+                    System.out.println("Edukalt kustutatud "+allikas+" kasutaja '"+ kasutaja+"' parool '"+parool+"'.");
                     leitud = true;
                     break;
                 }
@@ -71,31 +71,42 @@ public class HashMapTootlus {
             }
         }
         else{ // sonastikus ei leidu sellist võtit
-            System.out.println("Allikat '" + allikas + "' ei leitud salvestatud paroolide hulgast. Palun kontrollige õigekirja");
+            System.out.println("Allikat '" + allikas + "' ei leitud. Palun kontrollige õigekirja.");
         }
     }
 
-    
+    public static void muuda(HashMap<String, ArrayList<String[]>> sonastik, String allikas, String kasutajanimi, String uusparool) {
 
+        if (sonastik.containsKey(allikas)) {
+            ArrayList<String[]> kasutajad = sonastik.get(allikas); // kõik vastava allika väärtused
+            Iterator<String[]> iterator = kasutajad.iterator(); // et käia list läbi
+            boolean leitud = false;
 
-    public static void main(String[] args) {
-        // kasutaja sõnastik
-        HashMap<String, ArrayList<String[]>> test = FailiTootlus.loeParoolid("kasutaja1");
+            while (iterator.hasNext()) {
+                String[] paar = iterator.next();
+                String kasutaja = paar[0];
+                String parool = paar[1];
 
-        // kuvaTest
-        //kuva(test, "YouTube");
-        //kuvaKoik(test);
-
-//        System.out.println("Siit uus");
-//        lisa(test, "YouTube", "kasutajanimi", "parool");
-//        kuvaKoik(test);
-
-//        kuvaKoik(test);
-//        kustuta(test, "Cocomelon", "beebi");
-//        kuvaKoik(test);
-
-
-
-
+                if (kasutaja.equals(kasutajanimi)) { // oleme õige paari leidnud
+                    paar[1]=uusparool;
+                    System.out.println("Edukalt muudetud "+allikas+" kasutaja '"+ kasutaja+"' parool.");
+                    leitud = true;
+                    break;
+                }
+            }
+            if (!leitud){ // juhul kui kogu sõnastik käidi läbi ja ei leitud sobivat paari
+                System.out.println("Kasutajanime '" + kasutajanimi + "' ei leitud allika " + allikas + " paroolide hulgast. Palun kontrollige õigekirja.");
+            }
+        }
+        else{ // sonastikus ei leidu sellist võtit
+            System.out.println("Allikat '" + allikas + "' ei leitud. Palun kontrollige õigekirja.");
+        }
     }
+
+
+//    public static void main(String[] args) {
+//        // kasutaja sõnastik
+//        //HashMap<String, ArrayList<String[]>> test = FailiTootlus.loeParoolid("kasutaja1");
+//
+//    }
 }
