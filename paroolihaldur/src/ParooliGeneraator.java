@@ -3,8 +3,8 @@ public class ParooliGeneraator extends Main{
         String väiksedTähed = "abcdefghijklmnopqrstuvwxyzöäüõ";
          String suuredTähed = "ABCDEFGHIJKLMNOPQRSTUVWXYZÖÄÜÕ";
          String numbrid = "0123456789";
-         String sümbolid = "^$*.[]{}()?-\\\"!@#%&/\\\\,><':;|_~`";
-         String kõik = "abcdefghijklmnopqrstuvwxyzöäüõABCDEFGHIJKLMNOPQRSTUVWXYZÖÄÜÕ0123456789^$*.[]{}()?-\\\"!@#%&/\\\\,><':;|_~`";
+         String sümbolid = "^$*.[]{}()?-\\\"!@#%&/,><':;|_~`";
+         String kõik = "abcdefghijklmnopqrstuvwxyzöäüõABCDEFGHIJKLMNOPQRSTUVWXYZÖÄÜÕ0123456789^$*.[]{}()?-\\\"!@#%&/,><':;|_~`";
 
         if (pikkus < 4){
             pikkus = 4;
