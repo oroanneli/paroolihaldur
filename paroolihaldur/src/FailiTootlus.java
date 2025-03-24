@@ -50,4 +50,40 @@ public class FailiTootlus {
             e.printStackTrace();
         }
     }
+
+    public static ArrayList<Kasutaja> loeKasutajad(String failinimi){
+        ArrayList<Kasutaja> kasutajad = new ArrayList<>();
+        try (BufferedReader luger = new BufferedReader(new FileReader(failinimi))) {
+            String rida;
+            while ((rida = luger.readLine()) != null) {
+                String[] osad = rida.split(" %¤% ");
+                String kasutajanimi = osad[0];
+                String master_password = osad[1];
+                HashMap<String, ArrayList<String[]>> sonastik = loeParoolid(kasutajanimi);
+                Kasutaja vahekasutaja = new Kasutaja(kasutajanimi, master_password, sonastik);
+                kasutajad.add(vahekasutaja);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return kasutajad;
+    }
+
+    public static void salvestaKasutajad(ArrayList<Kasutaja> kasutajad, String failinimi){
+
+        try (BufferedWriter kirjutaja = new BufferedWriter(new FileWriter(failinimi))) {
+            //Käime kasutajate listi läbi
+            for (Kasutaja kas : kasutajad) {
+                // Ühenda kasutajanimi ja parool
+                String kasutajanimi= kas.getKasutajanimi();
+                String parool = kas.getMaster_password();
+                // Kirjutame järgmise formaadina: "kasutajanimi %¤% parool"
+                kirjutaja.write(kasutajanimi + " %¤% " + parool);
+                kirjutaja.newLine(); // iga uue kirje jaoks loome uue rea
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
