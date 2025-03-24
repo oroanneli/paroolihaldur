@@ -3,14 +3,14 @@ public class ParooliGeneraator extends Main{
         String väiksedTähed = "abcdefghijklmnopqrstuvwxyzöäüõ";
          String suuredTähed = "ABCDEFGHIJKLMNOPQRSTUVWXYZÖÄÜÕ";
          String numbrid = "0123456789";
-         String sümbolid = "^$*.[]{}()?-\\\"!@#%&/,><':;|_~`";
-         String kõik = "abcdefghijklmnopqrstuvwxyzöäüõABCDEFGHIJKLMNOPQRSTUVWXYZÖÄÜÕ0123456789^$*.[]{}()?-\\\"!@#%&/,><':;|_~`";
+         String sümbolid = "^$*.[]{}()?-\"!@#%&/\\,><':;|_~`";
+         String kõik = "abcdefghijklmnopqrstuvwxyzöäüõABCDEFGHIJKLMNOPQRSTUVWXYZÖÄÜÕ0123456789^$*.[]{}()?-\"!@#%&/\\,><':;|_~`";
 
         if (pikkus < 4){
             pikkus = 4;
         }
         char[] parool = new char[pikkus];
-
+        System.out.println(sümbolid.charAt(19));
         parool[0] = väiksedTähed.charAt((int) (Math.random()*väiksedTähed.length()));
         parool[1] = suuredTähed.charAt((int) (Math.random()*suuredTähed.length()));
         parool[2] = numbrid.charAt((int) (Math.random()*numbrid.length()));
