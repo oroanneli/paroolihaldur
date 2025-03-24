@@ -10,7 +10,7 @@ public class ParooliGeneraator extends Main{
             pikkus = 4;
         }
         char[] parool = new char[pikkus];
-        System.out.println(sümbolid.charAt(19));
+
         parool[0] = väiksedTähed.charAt((int) (Math.random()*väiksedTähed.length()));
         parool[1] = suuredTähed.charAt((int) (Math.random()*suuredTähed.length()));
         parool[2] = numbrid.charAt((int) (Math.random()*numbrid.length()));
