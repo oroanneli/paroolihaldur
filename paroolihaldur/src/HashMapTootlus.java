@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -75,7 +74,7 @@ public class HashMapTootlus {
         }
     }
 
-    public static void muuda(HashMap<String, ArrayList<String[]>> sonastik, String allikas, String kasutajanimi, String uusparool) {
+    public static void muudap(HashMap<String, ArrayList<String[]>> sonastik, String allikas, String kasutajanimi, String uusparool) {
 
         if (sonastik.containsKey(allikas)) {
             ArrayList<String[]> kasutajad = sonastik.get(allikas); // kõik vastava allika väärtused
