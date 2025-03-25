@@ -1,19 +1,67 @@
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        // loo list kasutajatega
+        ArrayList<Kasutaja> kasutajad = FailiTootlus.loeKasutajad("meistrid.txt");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
-        ParooliGeneraator.genereeritudParool(8);
+        login(kasutajad);
+        System.out.println("Sisselogimine õnnestus!");
     }
+
+    public static String login(ArrayList<Kasutaja> kasutajad) { // kui sisselogimine õnnestub, tagastatakse kasutajanimi
+        Scanner sc = new Scanner(System.in); // Scanner avatuks kogu meetodi kestel
+        String kasutajanimi;
+        String parool;
+
+        while (true) { //
+            System.out.print("Sisesta kasutajanimi: ");
+            kasutajanimi = sc.nextLine();
+
+            if (!kontrolliKasutajaOlemas(kasutajad, kasutajanimi)) {
+                System.out.println("Sellist kasutajat ei leitud. Proovi uuesti.");
+                continue; // tagasi algusesse
+            }
+
+            System.out.print("Sisesta parool: ");
+            parool = sc.nextLine();
+
+            if (kontrolliParool(kasutajad, kasutajanimi, parool)) { // kui parool on õige siis lõpetame tsükli
+                break;
+            }
+            else {
+                System.out.println("Vale parool! Proovi uuesti.");
+            }
+        }
+
+        return kasutajanimi;
+    }
+
+    public static boolean kontrolliParool(ArrayList<Kasutaja> kasutajad ,String kasutajanimi, String parool){
+        for (Kasutaja kasutaja : kasutajad) {
+            if (kasutaja.getKasutajanimi().equals(kasutajanimi) && kasutaja.getMaster_password().equals(parool)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean kontrolliKasutajaOlemas(ArrayList<Kasutaja> kasutajad, String kasutajanimi){
+        boolean leidub = false;
+        for (Kasutaja kasutaja : kasutajad) {
+            if(kasutaja.getKasutajanimi().equals(kasutajanimi)){
+                leidub=true;
+                break;
+            }
+        }
+        if(!leidub){
+            return false;
+        }
+        return true;
+    }
+
+
+
+
 }
