@@ -12,7 +12,6 @@ public class HashMapTootlus {
         else{
             System.out.println(allikas);
             ArrayList<String[]> vaartused = sonastik.get(allikas); // sõnastiku väärtused
-            // System.out.println(Arrays.deepToString(vaartused.toArray()));
 
             for (int i = 0; i < vaartused.size(); i++) { // käib läbi listi ja kuvab kõik kasutajanimed ja paroolid
                 String[] list = vaartused.get(i);
@@ -89,6 +88,34 @@ public class HashMapTootlus {
                 if (kasutaja.equals(kasutajanimi)) { // oleme õige paari leidnud
                     paar[1]=uusparool;
                     System.out.println("Edukalt muudetud "+allikas+" kasutaja '"+ kasutaja+"' parool.");
+                    leitud = true;
+                    break;
+                }
+            }
+            if (!leitud){ // juhul kui kogu sõnastik käidi läbi ja ei leitud sobivat paari
+                System.out.println("Kasutajanime '" + kasutajanimi + "' ei leitud allika " + allikas + " paroolide hulgast. Palun kontrollige õigekirja.");
+            }
+        }
+        else{ // sonastikus ei leidu sellist võtit
+            System.out.println("Allikat '" + allikas + "' ei leitud. Palun kontrollige õigekirja.");
+        }
+    }
+
+    public static void muudak(HashMap<String, ArrayList<String[]>> sonastik, String allikas, String kasutajanimi, String uuskasutajanimi) {
+
+        if (sonastik.containsKey(allikas)) {
+            ArrayList<String[]> kasutajad = sonastik.get(allikas); // kõik vastava allika väärtused
+            Iterator<String[]> iterator = kasutajad.iterator(); // et käia list läbi
+            boolean leitud = false;
+
+            while (iterator.hasNext()) {
+                String[] paar = iterator.next();
+                String kasutaja = paar[0];
+
+                if (kasutaja.equals(kasutajanimi)) { // oleme õige paari leidnud
+                    String vanakas = paar[0];
+                    paar[0]=uuskasutajanimi;
+                    System.out.println("Edukalt muudetud allika " +allikas + " kasutajanimi '" + vanakas + "' -> '" + uuskasutajanimi + "'");
                     leitud = true;
                     break;
                 }

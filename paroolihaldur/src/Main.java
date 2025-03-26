@@ -6,8 +6,8 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Kasutaja> kasutajad = FailiTootlus.loeKasutajad("meistrid.txt"); // loeb sisse olemasolevad kasutajad
         Scanner sc = new Scanner(System.in); // Scanner kasutaja sisendi lugemiseks
-
-
+        HashMap<String, ArrayList<String[]>> sonastik = new HashMap<>();
+        String kasutajanimi="";
 
         System.out.println("login - sisselogimine");
         System.out.println("loo - uue kasutaja loomine");
@@ -16,10 +16,15 @@ public class Main {
             System.out.print("-> ");
             String sisend = sc.nextLine(); // loe kasutaja sisend
 
+            // basic funktsionaalsus
             if (sisend.equals("login")) {
-                login(kasutajad, sc);
+                kasutajanimi=login(kasutajad, sc);
+                if (kasutajanimi != null){
+                    sonastik = FailiTootlus.loeParoolid(kasutajanimi);
+                }
             }
             else if (sisend.equals("logout")) {
+                FailiTootlus.salvestaParoolid(kasutajanimi, sonastik);
                 break; // Lõpetame programmi töö
             }
             else if (sisend.equals("loo")) {
@@ -28,6 +33,63 @@ public class Main {
             else if (sisend.equals("abi")) {
                 abi();
             }
+            else if (sisend.equals("s")){
+                FailiTootlus.salvestaParoolid(kasutajanimi, sonastik);
+            }
+
+
+            // need sõnastiku töötlemise valikud:
+            else if (sisend.equals("koik")){
+                HashMapTootlus.kuvaKoik(sonastik);
+            }
+            else if (sisend.contains("naita")){
+                String allikas;
+                if (sisend.equals("naita")) {
+                    System.out.print("sisesta allikas, mille parooli soovid kuvada: ");
+                    allikas = sc.nextLine();
+                }
+                else{
+                    allikas = sisend.split(" ")[1];
+                }
+                HashMapTootlus.kuva(sonastik, allikas);
+            }
+            else if (sisend.equals("muudap")){
+                System.out.print("Allikas: ");
+                String allikas = sc.nextLine();
+                System.out.print("Kasutajanimi: ");
+                String kas_nim = sc.nextLine();
+                System.out.println("Uus parool: ");
+                String uus_parool = sc.nextLine();
+                HashMapTootlus.muudap(sonastik, allikas, kas_nim, uus_parool);
+            }
+            else if (sisend.equals("muudak")){
+                System.out.print("Allikas: ");
+                String allikas = sc.nextLine();
+                System.out.print("Kasutajanimi: ");
+                String kas_nim = sc.nextLine();
+                System.out.print("Uus kasutajanimi: ");
+                String uus_kasutaja = sc.nextLine();
+                HashMapTootlus.muudak(sonastik, allikas, kas_nim, uus_kasutaja);
+            }
+            else if (sisend.equals("lisa")){
+                System.out.print("Allikas: ");
+                String allikas = sc.nextLine();
+                System.out.print("Kasutajanimi: ");
+                String kas_nim = sc.nextLine();
+                System.out.print("Parool: ");
+                String parool = sc.nextLine();
+                HashMapTootlus.lisa(sonastik, allikas, kas_nim, parool);
+            }
+            else if (sisend.equals("kustuta")){
+                System.out.print("Allikas: ");
+                String allikas = sc.nextLine();
+                System.out.print("Kasutajanimi: ");
+                String kas_nim = sc.nextLine();
+                HashMapTootlus.kustuta(sonastik, allikas, kas_nim);
+            }
+
+
+            // kui kasutaja teeb vea
             else {
                 System.out.println("Tundmatu sisend.");
             }
@@ -43,11 +105,13 @@ public class Main {
         System.out.println("login - sisselogimine / konto vahetamine");
         System.out.println("logout - sulgeb programmi");
         System.out.println("loo - uue kasutaja loomine");
-        System.out.println("naita - kuvab allika kasutajanimed ja paroolid (vaja veel lisada)");
-        System.out.println("koik - kuvab kõik salvestatud allikad, kasutajanimed, paroolid (vaja veel lisada)");
-        System.out.println("lisa - uue parooli lisamine (vaja veel lisada)");
-        System.out.println("kustuta - kustutab parooli (vaja veel lisada)");
-        System.out.println("muudap - olemasoleva parooli muutmine (vaja veel lisada)");
+        System.out.println("s - paroolide salvestamiseks");
+        System.out.println("naita + (allikas) - kuvab allika kasutajanimed ja paroolid");
+        System.out.println("koik - kuvab kõik salvestatud allikad, kasutajanimed, paroolid");
+        System.out.println("lisa - uue parooli lisamine");
+        System.out.println("kustuta - kustutab parooli");
+        System.out.println("muudap - olemasoleva parooli muutmine");
+        System.out.println("muudak - olemasoleva kasutajanime muutmine");
     }
 
     public static String login(ArrayList<Kasutaja> kasutajad, Scanner sc) {
