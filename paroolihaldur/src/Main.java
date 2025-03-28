@@ -58,7 +58,7 @@ public class Main {
                 String allikas = sc.nextLine();
                 System.out.print("Kasutajanimi: ");
                 String kas_nim = sc.nextLine();
-                System.out.println("Uus parool: ");
+                System.out.print("Uus parool: ");
                 String uus_parool = sc.nextLine();
                 HashMapTootlus.muudap(sonastik, allikas, kas_nim, uus_parool);
             }
@@ -99,13 +99,13 @@ public class Main {
     }
 
 
-    public static void abi() {
+    public static void abi() { // kasutaja valikud
         System.out.println("Valige tegevus:");
         System.out.println("abi - näitab valikuid");
         System.out.println("login - sisselogimine / konto vahetamine");
         System.out.println("logout - sulgeb programmi");
         System.out.println("loo - uue kasutaja loomine");
-        System.out.println("s - paroolide salvestamiseks");
+        System.out.println("s - muudatuste salvestamiseks");
         System.out.println("naita + (allikas) - kuvab allika kasutajanimed ja paroolid");
         System.out.println("koik - kuvab kõik salvestatud allikad, kasutajanimed, paroolid");
         System.out.println("lisa - uue parooli lisamine");
@@ -114,7 +114,7 @@ public class Main {
         System.out.println("muudak - olemasoleva kasutajanime muutmine");
     }
 
-    public static String login(ArrayList<Kasutaja> kasutajad, Scanner sc) {
+    public static String login(ArrayList<Kasutaja> kasutajad, Scanner sc) { // sisselogimine
         String kasutajanimi;
         String parool;
 
@@ -141,7 +141,7 @@ public class Main {
         }
     }
 
-    public static boolean kontrolliParool(ArrayList<Kasutaja> kasutajad, String kasutajanimi, String parool) {
+    public static boolean kontrolliParool(ArrayList<Kasutaja> kasutajad, String kasutajanimi, String parool) { // returnib true, kui kasutajanimi ja parool klapivad
         for (Kasutaja kasutaja : kasutajad) {
             if (kasutaja.getKasutajanimi().equals(kasutajanimi) && kasutaja.getMaster_password().equals(parool)) {
                 return true;
@@ -150,7 +150,7 @@ public class Main {
         return false;
     }
 
-    public static boolean kontrolliKasutajaOlemas(ArrayList<Kasutaja> kasutajad, String kasutajanimi) {
+    public static boolean kontrolliKasutajaOlemas(ArrayList<Kasutaja> kasutajad, String kasutajanimi) { // returnib true kui selline kasutaja leidub
         for (Kasutaja kasutaja : kasutajad) {
             if (kasutaja.getKasutajanimi().equals(kasutajanimi)) {
                 return true;
