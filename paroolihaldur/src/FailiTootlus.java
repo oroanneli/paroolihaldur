@@ -2,7 +2,13 @@ import java.util.HashMap;
 import java.io.*;
 import java.util.*;
 
+
 public class FailiTootlus {
+    /**
+     * Loeb platformid, kasutajanimed ja paroolid failist sõnastikku
+     * @param kasutajanimi, kasutaja kes on hetkel sisselogitud ja soovib oma andmeid teada
+     * @return tagastab sõnastiku kasutaja andmetest
+     */
     public static HashMap<String, ArrayList<String[]>> loeParoolid(String kasutajanimi){
         String failinimi = kasutajanimi+".txt";
         HashMap<String, ArrayList<String[]>> sonastik = new HashMap<>();
@@ -13,6 +19,9 @@ public class FailiTootlus {
                 if (osad.length == 2) { // kuna failis on kirjed kujul. allikas - kasutajanimi, parool
                     String võti = osad[0].trim(); // Et eemaldada - märk
                     String[] väärtused = osad[1].split(" ; "); // lahutame üksteisest kasutajanime ja parooli listi.
+                    for (int i = 0; i < väärtused.length; i++) {
+                        väärtused[i] = väärtused[i];
+                    }
                     // Kui kasutajal juba on selle allika kasutaja salvestatud siis lisame selle allika juurde ak teise allika
                     if (sonastik.containsKey(võti)){
                         sonastik.get(võti).add(väärtused);
@@ -28,6 +37,12 @@ public class FailiTootlus {
         }
         return sonastik;
     }
+    /**
+     * Loeb platformid, kasutajanimed ja paroolid sõnastikust faili
+     * @param kasutajanimi, kasutaja kes on hetkel sisselogitud ja soovib oma andmeid teada
+     * @param sonastik kasutaja andmeid sisaldav sõnastik
+     * midagi ei tagastata, lihtsalt luuakse/salvestatakse andmed faili
+     */
     public static void salvestaParoolid(String kasutajanimi, HashMap<String, ArrayList<String[]>> sonastik) {
         String failinimi = kasutajanimi + ".txt";
 
@@ -51,11 +66,17 @@ public class FailiTootlus {
         }
     }
 
+    /**
+     * Loeb kasutajanimed ja master-passwordid failist
+     * @param failinimi, fail milles on kasutajate nimed ja peaparoolid
+     * @return tagastab listi faili põhjal loodud kasutajatest
+     */
     public static ArrayList<Kasutaja> loeKasutajad(String failinimi){
         ArrayList<Kasutaja> kasutajad = new ArrayList<>();
         try (BufferedReader luger = new BufferedReader(new FileReader(failinimi))) {
             String rida;
             while ((rida = luger.readLine()) != null) {
+                //System.out.println(rida);
                 String[] osad = rida.split(" %¤% ");
                 String kasutajanimi = osad[0];
                 String master_password = osad[1];
@@ -68,7 +89,12 @@ public class FailiTootlus {
         }
         return kasutajad;
     }
-
+    /**
+     * Loeb kasutajanimed ja peaparoolid faili.
+     * @param kasutajad, list hetkestest kasutajate olemitest
+     * @param failinimi, fail kuhu salvestatakse kasutajanimed ja nende peaparoolid
+     * Ei tagastata midagi. Salvestatakse fail
+     */
     public static void salvestaKasutajad(ArrayList<Kasutaja> kasutajad, String failinimi){
 
         try (BufferedWriter kirjutaja = new BufferedWriter(new FileWriter(failinimi))) {
@@ -78,6 +104,7 @@ public class FailiTootlus {
                 String kasutajanimi= kas.getKasutajanimi();
                 String parool = kas.getMaster_password();
                 // Kirjutame järgmise formaadina: "kasutajanimi %¤% parool"
+                //System.out.println(kasutajanimi + " %¤% " + parool);
                 kirjutaja.write(kasutajanimi + " %¤% " + parool);
                 kirjutaja.newLine(); // iga uue kirje jaoks loome uue rea
 

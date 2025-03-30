@@ -162,7 +162,7 @@ public class Main {
     public static void looKasutaja(ArrayList<Kasutaja> kasutajad, Scanner sc) {
         System.out.print("Looge kasutajanimi: ");
         String kasutajanimi = sc.nextLine();
-
+        System.out.println(kasutajanimi);
         if (kontrolliKasutajaOlemas(kasutajad, kasutajanimi)) { // Juba eksisteeriva kasutajanimega ei saa uut kasutajat luua
             System.out.println("Kasutaja juba eksisteerib.");
             return;
