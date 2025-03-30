@@ -5,7 +5,7 @@ public class Krüpteerimine {
      * @return tagastab krüpteeritud koodi
      */
     public static String krüpteeri(String parool){
-        String kõik = "abcdefghijklmnopqrstuvwxyzöäüõABCDEFGHIJKLMNOPQRSTUVWXYZÖÄÜÕ0123456789^$*.[]{}()?-\"!@#%&/\\,><':;|_~`";
+        String kõik = "xYM@ghy[RTÖSF9~_^GjPk!#ufmcblA2WÄ1/)\"0zZ?(]HEns`BKöV.QO<õe6,4&r;NCvä{3|I*:Ü}8iL>%XJot7a'$ü-D5Upq\\Õwd";
         String krüpteeritud = "";
         char[] paroolCharArray = parool.toCharArray();
 
@@ -23,7 +23,7 @@ public class Krüpteerimine {
      * @return tagastab dekrüptitud parooli
      */
     public static String dekrüpteeri(String parool){
-        String kõik = "abcdefghijklmnopqrstuvwxyzöäüõABCDEFGHIJKLMNOPQRSTUVWXYZÖÄÜÕ0123456789^$*.[]{}()?-\"!@#%&/\\,><':;|_~`";
+        String kõik = "xYM@ghy[RTÖSF9~_^GjPk!#ufmcblA2WÄ1/)\"0zZ?(]HEns`BKöV.QO<õe6,4&r;NCvä{3|I*:Ü}8iL>%XJot7a'$ü-D5Upq\\Õwd";
         String dekrüpteeritud = "";
         char[] paroolCharArray = parool.toCharArray();
 
@@ -34,10 +34,10 @@ public class Krüpteerimine {
         }
         return dekrüpteeritud.toString();
     }
-
+    /*
     public static void main(String[] args) {
         System.out.println(krüpteeri("karupoegpuhh"));
         System.out.println(dekrüpteeri(krüpteeri("karupoegpuhh")));
     }
-
+    */
 }
