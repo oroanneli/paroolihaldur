@@ -18,9 +18,10 @@ public class FailiTootlus {
                 String[] osad = rida.split(" %¤% ");
                 if (osad.length == 2) { // kuna failis on kirjed kujul. allikas - kasutajanimi, parool
                     String võti = osad[0].trim(); // Et eemaldada - märk
+                    võti = Krüpteerimine.dekrüpteeri(võti);
                     String[] väärtused = osad[1].split(" ; "); // lahutame üksteisest kasutajanime ja parooli listi.
                     for (int i = 0; i < väärtused.length; i++) {
-                        väärtused[i] = väärtused[i];
+                        väärtused[i] = Krüpteerimine.dekrüpteeri(väärtused[i]);
                     }
                     // Kui kasutajal juba on selle allika kasutaja salvestatud siis lisame selle allika juurde ak teise allika
                     if (sonastik.containsKey(võti)){
@@ -55,9 +56,9 @@ public class FailiTootlus {
                 // Käime üle paroolid - kasutajanimed
                 for (String[] paar : väärtusedList) {
                     // Ühenda kasutajanimi ja parool
-                    String kasutajaParool = paar[0] + " ; " + paar[1];
+                    String kasutajaParool = Krüpteerimine.krüpteeri(paar[0]) + " ; " + Krüpteerimine.krüpteeri(paar[1]);
                     // Kirjutame järgmise formaadina: "platform %¤% kasutajanimi ; parool"
-                    kirjutaja.write(võti + " %¤% " + kasutajaParool);
+                    kirjutaja.write(Krüpteerimine.krüpteeri(võti) + " %¤% " + kasutajaParool);
                     kirjutaja.newLine(); // iga uue kirje jaoks loome uue rea
                 }
             }
@@ -78,8 +79,8 @@ public class FailiTootlus {
             while ((rida = luger.readLine()) != null) {
                 //System.out.println(rida);
                 String[] osad = rida.split(" %¤% ");
-                String kasutajanimi = osad[0];
-                String master_password = osad[1];
+                String kasutajanimi = Krüpteerimine.dekrüpteeri(osad[0]);
+                String master_password = Krüpteerimine.dekrüpteeri(osad[1]);
                 HashMap<String, ArrayList<String[]>> sonastik = loeParoolid(kasutajanimi);
                 Kasutaja vahekasutaja = new Kasutaja(kasutajanimi, master_password, sonastik);
                 kasutajad.add(vahekasutaja);
@@ -105,7 +106,7 @@ public class FailiTootlus {
                 String parool = kas.getMaster_password();
                 // Kirjutame järgmise formaadina: "kasutajanimi %¤% parool"
                 //System.out.println(kasutajanimi + " %¤% " + parool);
-                kirjutaja.write(kasutajanimi + " %¤% " + parool);
+                kirjutaja.write(Krüpteerimine.krüpteeri(kasutajanimi) + " %¤% " + Krüpteerimine.krüpteeri(parool));
                 kirjutaja.newLine(); // iga uue kirje jaoks loome uue rea
 
             }
