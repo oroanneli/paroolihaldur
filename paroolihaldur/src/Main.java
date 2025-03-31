@@ -7,11 +7,33 @@ public class Main {
         ArrayList<Kasutaja> kasutajad = FailiTootlus.loeKasutajad("meistrid.txt"); // loeb sisse olemasolevad kasutajad
         Scanner sc = new Scanner(System.in); // Scanner kasutaja sisendi lugemiseks
         HashMap<String, ArrayList<String[]>> sonastik = new HashMap<>();
-        String kasutajanimi="";
+        String kasutajanimi = null;
+        boolean sees = false;
 
         System.out.println("login - sisselogimine");
         System.out.println("loo - uue kasutaja loomine");
-        while (true) {
+
+        while (!sees){
+            System.out.print("-> ");
+            String sisend = sc.nextLine(); // loe kasutaja sisend
+
+            // basic funktsionaalsus
+            if (sisend.equals("login")) {
+                kasutajanimi=login(kasutajad, sc);
+                if (kasutajanimi != null){
+                    sonastik = FailiTootlus.loeParoolid(kasutajanimi);
+                }
+                sees=true;
+            }
+            else if (sisend.equals("logout")) {
+                FailiTootlus.salvestaParoolid(kasutajanimi, sonastik);
+                break; // Lõpetame programmi töö
+            }
+            else if (sisend.equals("loo")) {
+                looKasutaja(kasutajad, sc);
+            }
+        }
+        while (sees) {
             System.out.println("Valikute kuvamiseks 'abi'");
             System.out.print("-> ");
             String sisend = sc.nextLine(); // loe kasutaja sisend
@@ -88,6 +110,18 @@ public class Main {
                 HashMapTootlus.kustuta(sonastik, allikas, kas_nim);
             }
 
+            else if (sisend.contains("g")){
+                int pikkus;
+                if (sisend.equals("g")) {
+                    System.out.print("soovitud pikkus (min 4): ");
+                    pikkus = Integer.parseInt(sc.nextLine());
+                }
+                else{
+                    pikkus = Integer.parseInt(sisend.split(" ")[1]);
+                }
+                System.out.println(ParooliGeneraator.genereeritudParool(pikkus));
+            }
+
 
             // kui kasutaja teeb vea
             else {
@@ -112,6 +146,7 @@ public class Main {
         System.out.println("kustuta - kustutab parooli");
         System.out.println("muudap - olemasoleva parooli muutmine");
         System.out.println("muudak - olemasoleva kasutajanime muutmine");
+        System.out.println("g - parooli genereerimiseks");
     }
 
     public static String login(ArrayList<Kasutaja> kasutajad, Scanner sc) { // sisselogimine
