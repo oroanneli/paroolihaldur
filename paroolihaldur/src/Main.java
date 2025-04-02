@@ -32,6 +32,9 @@ public class Main {
             else if (sisend.equals("loo")) {
                 looKasutaja(kasutajad, sc);
             }
+            else{
+                System.out.println("Tundmatu sisend. ");
+            }
         }
         while (sees) {
             System.out.println("Valikute kuvamiseks 'abi'");
@@ -110,9 +113,9 @@ public class Main {
                 HashMapTootlus.kustuta(sonastik, allikas, kas_nim);
             }
 
-            else if (sisend.contains("g")){
+            else if (sisend.contains("genereeri")){
                 int pikkus;
-                if (sisend.equals("g")) {
+                if (sisend.equals("genereeri")) {
                     System.out.print("soovitud pikkus (min 4): ");
                     pikkus = Integer.parseInt(sc.nextLine());
                 }
@@ -146,7 +149,7 @@ public class Main {
         System.out.println("kustuta - kustutab parooli");
         System.out.println("muudap - olemasoleva parooli muutmine");
         System.out.println("muudak - olemasoleva kasutajanime muutmine");
-        System.out.println("g - parooli genereerimiseks");
+        System.out.println("genereeri - parooli genereerimiseks");
     }
 
     public static String login(ArrayList<Kasutaja> kasutajad, Scanner sc) { // sisselogimine
@@ -197,7 +200,7 @@ public class Main {
     public static void looKasutaja(ArrayList<Kasutaja> kasutajad, Scanner sc) {
         System.out.print("Looge kasutajanimi: ");
         String kasutajanimi = sc.nextLine();
-        System.out.println(kasutajanimi);
+        //System.out.println(kasutajanimi);
         if (kontrolliKasutajaOlemas(kasutajad, kasutajanimi)) { // Juba eksisteeriva kasutajanimega ei saa uut kasutajat luua
             System.out.println("Kasutaja juba eksisteerib.");
             return;
