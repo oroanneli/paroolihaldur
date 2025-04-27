@@ -11,7 +11,7 @@ public class Krüpteerimine {
 
         for (char sümbol : paroolCharArray){ // liigutab iga elemendi vastavalt sõne jadale "kõik" vaates
             if (kõik.indexOf(sümbol) > 96){  // 3 väärtust EDASI, kui jõuab indeksini >96 alustab algusest
-                krüpteeritud += kõik.charAt(kõik.indexOf(sümbol)-97);
+                krüpteeritud += kõik.charAt(kõik.indexOf(sümbol)-98);
             } else krüpteeritud += kõik.charAt(kõik.indexOf(sümbol)+3);
         }
         return krüpteeritud.toString(); // tagastab krüpteeritud parooli
@@ -29,15 +29,16 @@ public class Krüpteerimine {
 
         for (char sümbol : paroolCharArray){ // liigutab iga elemendi vastavalt sõne jadale "kõik" vaates
             if (kõik.indexOf(sümbol) < 3){   // 3 väärtust TAGASI, kui jõuab indeksini <3 alustab lõpust
-                dekrüpteeritud += kõik.charAt(kõik.indexOf(sümbol)+97);
+                dekrüpteeritud += kõik.charAt(kõik.indexOf(sümbol)+98);
             } else dekrüpteeritud += kõik.charAt(kõik.indexOf(sümbol)-3);
         }
         return dekrüpteeritud.toString();
     }
     /*
     public static void main(String[] args) {
-        System.out.println(krüpteeri("karupoegpuhh"));
-        System.out.println(dekrüpteeri(krüpteeri("karupoegpuhh")));
+        System.out.println(krüpteeri("admin"));
+        System.out.println(dekrüpteeri(krüpteeri("admin")));
     }
-    */
+     */
+
 }
