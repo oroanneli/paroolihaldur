@@ -1,4 +1,4 @@
-package com.example.paroolihaldur_fx;
+package main;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;

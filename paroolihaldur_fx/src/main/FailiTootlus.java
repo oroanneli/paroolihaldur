@@ -1,4 +1,4 @@
-package com.example.paroolihaldur_fx;
+package main;
 
 import java.util.HashMap;
 import java.io.*;
