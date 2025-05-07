@@ -2,43 +2,41 @@ package main;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class Main extends Application {
     public void start(Stage stage) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/FXML/SideBar.fxml")));
-        /**
-        AnchorPane anchorPane = new AnchorPane();
-        BorderPane borderPane = new BorderPane();
+        // Load sidebar
+        Parent root = FXMLLoader.load(getClass().getResource("/FXML/SideBar.fxml"));
 
+        // Access center area
+        BorderPane borderPane = (BorderPane) ((AnchorPane) root).getChildren().get(0);
+        VBox centerArea = (VBox) borderPane.getCenter();
 
-        VBox sideBar = new VBox(0);
-        sideBar.setAlignment(Pos.CENTER);
-        sideBar.setPrefWidth(236);
-        sideBar.setPrefHeight(601);
-        sideBar.setStyle("-fx-background-color: #050517;");
+        // Load accordion
+        FXMLLoader accordionLoader = new FXMLLoader(getClass().getResource("/FXML/AccordionContent.fxml"));
+        Parent accordionContent = accordionLoader.load();
+        AccordionController controller = accordionLoader.getController();
 
-        Button profile = new Button("Profile");
-        profile.setPrefHeight(42);
-        profile.setPrefWidth(243);
-        profile.setStyle("-fx-background-color: #efc88b;");
-        sideBar.getChildren().add(0,profile);
+        // Load data and populate
+        HashMap<String, ArrayList<String[]>> data = FailiTootlus.loeParoolid("külaline_5");
+        controller.initializeData(data);
 
-        borderPane.setLeft(sideBar);
-        anchorPane.getChildren().add(borderPane);
-         **/
+        // Add to center
+        centerArea.getChildren().add(accordionContent);
+
+        // Show stage
         Scene scene = new Scene(root, 1092, 601);
-        stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
     }

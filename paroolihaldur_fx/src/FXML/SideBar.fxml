@@ -8,7 +8,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="1092.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="601.0" prefWidth="1092.0">
     <children>
         <BorderPane prefHeight="601.0" prefWidth="1092.0">
             <left>
@@ -66,7 +70,9 @@
                 </VBox>
             </left>
             <center>
-                <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #d3d5d7; -fx-background-radius: 0em;" BorderPane.alignment="CENTER" />
+                <VBox fx:id="mainContent" prefHeight="200.0" prefWidth="100.0"
+                      style="-fx-background-color: #d3d5d7; -fx-background-radius: 0em;"
+                      BorderPane.alignment="CENTER" />
             </center>
         </BorderPane>
     </children>
