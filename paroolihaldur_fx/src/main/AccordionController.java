@@ -11,30 +11,62 @@ import java.util.HashMap;
 
 public class AccordionController {
     @FXML private Accordion passwordAccordion;
+    private String currentUser; // Store the logged-in username
 
-    public void initializeData(HashMap<String, ArrayList<String[]>> userPasswordMap) {
-        if (userPasswordMap.isEmpty()) {
-            TitledPane emptyPane = new TitledPane();
-            emptyPane.setText("No password data available");
-            passwordAccordion.getPanes().add(emptyPane);
-        } else {
-            for (String platform : userPasswordMap.keySet()) {
-                TitledPane pane = new TitledPane();
-                pane.setText(platform);
+    // Called automatically after FXML loading
+    public void initialize() {
+        loadPasswordsForUser(currentUser);
+    }
 
-                VBox credentialsBox = new VBox();
-                ArrayList<String[]> credentialsList = userPasswordMap.get(platform);
+    public void setCurrentUser(String username) {
+        this.currentUser = username;
+        loadPasswordsForUser(username);
+    }
 
-                for (String[] credentials : credentialsList) {
-                    String user = credentials[0];
-                    String pass = credentials[1];
-                    Text text = new Text("Username: " + user + " | Password: " + pass);
-                    credentialsBox.getChildren().add(text);
-                }
-
-                pane.setContent(credentialsBox);
-                passwordAccordion.getPanes().add(pane);
-            }
+    private void loadPasswordsForUser(String username) {
+        if (username == null || username.isEmpty()) {
+            showEmptyMessage("No user logged in");
+            return;
         }
+
+        HashMap<String, ArrayList<String[]>> userPasswordMap = FailiTootlus.loeParoolid(username);
+        updateAccordion(userPasswordMap);
+    }
+
+    private void updateAccordion(HashMap<String, ArrayList<String[]>> data) {
+        passwordAccordion.getPanes().clear(); // Clear existing content
+
+        if (data.isEmpty()) {
+            showEmptyMessage("No password data available");
+        } else {
+            data.forEach((platform, credentialsList) -> {
+                TitledPane pane = createPlatformPane(platform, credentialsList);
+                passwordAccordion.getPanes().add(pane);
+            });
+        }
+    }
+
+    private TitledPane createPlatformPane(String platform, ArrayList<String[]> credentialsList) {
+        TitledPane pane = new TitledPane();
+        pane.setText(platform);
+
+        VBox credentialsBox = new VBox(5); // 5px spacing between entries
+        credentialsList.forEach(credentials -> {
+            String user = credentials[0];
+            String pass = credentials[1];
+            credentialsBox.getChildren().add(
+                    new Text(String.format("Username: %s\nPassword: %s", user, pass))
+            );
+        });
+
+        pane.setContent(credentialsBox);
+        return pane;
+    }
+
+    private void showEmptyMessage(String message) {
+        TitledPane emptyPane = new TitledPane();
+        emptyPane.setText(message);
+        emptyPane.setCollapsible(false); // Can't collapse this message
+        passwordAccordion.getPanes().add(emptyPane);
     }
 }

@@ -20,11 +20,11 @@ public class FailiTootlus {
                 String[] osad = rida.split(" %¤% ");
                 if (osad.length == 2) { // kuna failis on kirjed kujul. allikas - kasutajanimi, parool
                     String võti = osad[0].trim(); // Et eemaldada - märk
-                    //võti = Krüpteerimine.dekrüpteeri(võti);
+                    võti = Krüpteerimine.dekrüpteeri(võti);
                     String[] väärtused = osad[1].split(" ; "); // lahutame üksteisest kasutajanime ja parooli listi.
-//                    for (int i = 0; i < väärtused.length; i++) {
-//                        väärtused[i] = Krüpteerimine.dekrüpteeri(väärtused[i]);
-//                    }
+                    for (int i = 0; i < väärtused.length; i++) {
+                        väärtused[i] = Krüpteerimine.dekrüpteeri(väärtused[i]);
+                    }
                     // Kui kasutajal juba on selle allika kasutaja salvestatud siis lisame selle allika juurde ak teise allika
                     if (sonastik.containsKey(võti)){
                         sonastik.get(võti).add(väärtused);
@@ -58,11 +58,11 @@ public class FailiTootlus {
                 // Käime üle paroolid - kasutajanimed
                 for (String[] paar : väärtusedList) {
                     // Ühenda kasutajanimi ja parool
-                    //String kasutajaParool = Krüpteerimine.krüpteeri(paar[0]) + " ; " + Krüpteerimine.krüpteeri(paar[1]);
-                    String kasutajaParool = paar[0] + " ; " + paar[1];
+                    String kasutajaParool = Krüpteerimine.krüpteeri(paar[0]) + " ; " + Krüpteerimine.krüpteeri(paar[1]);
+                    //String kasutajaParool = paar[0] + " ; " + paar[1];
                     // Kirjutame järgmise formaadina: "platform %¤% kasutajanimi ; parool"
-                    //kirjutaja.write(Krüpteerimine.krüpteeri(võti) + " %¤% " + kasutajaParool);
-                    kirjutaja.write(võti + " %¤% " + kasutajaParool);
+                    kirjutaja.write(Krüpteerimine.krüpteeri(võti) + " %¤% " + kasutajaParool);
+                    //kirjutaja.write(võti + " %¤% " + kasutajaParool);
                     kirjutaja.newLine(); // iga uue kirje jaoks loome uue rea
                 }
             }

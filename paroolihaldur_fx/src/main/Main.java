@@ -27,10 +27,7 @@ public class Main extends Application {
         FXMLLoader accordionLoader = new FXMLLoader(getClass().getResource("/FXML/AccordionContent.fxml"));
         Parent accordionContent = accordionLoader.load();
         AccordionController controller = accordionLoader.getController();
-
-        // Load data and populate
-        HashMap<String, ArrayList<String[]>> data = FailiTootlus.loeParoolid("külaline_5");
-        controller.initializeData(data);
+        controller.setCurrentUser("külaline_5");
 
         // Add to center
         centerArea.getChildren().add(accordionContent);
