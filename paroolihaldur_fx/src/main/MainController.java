@@ -1,0 +1,54 @@
+package main;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+public class MainController {
+    @FXML private BorderPane mainBorderPane;
+    @FXML private VBox centerContainer;
+
+    @FXML private Button allItems, addNew, generate, logOut, shutDown;
+
+    @FXML
+    public void initialize() throws IOException {
+        loadAccordionView(); // default view
+    }
+
+    @FXML
+    public void handleButtonClick(ActionEvent event) throws IOException {
+        if (event.getSource() == allItems) {
+            loadAccordionView();
+        } else if (event.getSource() == addNew) {
+            loadCenter("/FXML/Add-New.fxml");
+        } else if (event.getSource() == generate) {
+            loadCenter("/FXML/Generate.fxml");
+        }
+    }
+
+    private void loadAccordionView() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/AccordionContent.fxml"));
+        Parent view = loader.load();
+        AccordionController controller = loader.getController();
+        controller.setCurrentUser("külaline_5");
+        mainBorderPane.setCenter(view);
+    }
+
+    private void loadCenter(String fxmlPath) throws IOException {
+        if (getClass().getResource(fxmlPath) == null){
+            System.err.println("fxml not found");
+            return;
+        }
+        Parent view = FXMLLoader.load(getClass().getResource(fxmlPath));
+        mainBorderPane.setCenter(view);
+    }
+
+}

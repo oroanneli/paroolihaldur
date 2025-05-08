@@ -8,53 +8,13 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17"
-            xmlns:fx="http://javafx.com/fxml/1"
-            maxHeight="-Infinity" maxWidth="-Infinity"
-            minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="601.0" prefWidth="1092.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="1092.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
     <children>
-        <BorderPane prefHeight="601.0" prefWidth="1092.0">
+        <BorderPane fx:id="mainBorderPane" prefHeight="601.0" prefWidth="1092.0">
             <left>
                 <VBox prefHeight="587.0" prefWidth="236.0" style="-fx-background-color: #050517;" BorderPane.alignment="CENTER">
                     <children>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="13.0" layoutX="10.0" layoutY="94.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="243.0" style="-fx-background-color: #EFC88b; -fx-background-radius: 0;" text="Log Out">
-                            <graphic>
-                                <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../icons/User.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                            <padding>
-                                <Insets left="32.0" />
-                            </padding>
-                        </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="13.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="243.0" style="-fx-background-color: #EFC88b; -fx-background-radius: 0;" text="Add New">
-                            <graphic>
-                                <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../icons/Plus.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                            <padding>
-                                <Insets left="32.0" />
-                            </padding>
-                        </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="52.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="243.0" style="-fx-background-color: #EFC88b; -fx-background-radius: 0;" text="Generate">
-                            <graphic>
-                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../icons/Bard.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                            <padding>
-                                <Insets left="30.0" />
-                            </padding>
-                        </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="13.0" layoutX="10.0" layoutY="94.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="243.0" style="-fx-background-color: #EFC88b; -fx-background-radius: 0;" text="All Items">
+                        <Button fx:id="allItems" alignment="BASELINE_LEFT" graphicTextGap="13.0" layoutX="10.0" layoutY="94.0" mnemonicParsing="false" onAction="#handleButtonClick" prefHeight="42.0" prefWidth="243.0" style="-fx-background-color: #EFC88b; -fx-background-radius: 0;" styleClass="sidebarItem" text="All Items">
                             <graphic>
                                 <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -66,13 +26,59 @@
                                 <Insets left="33.0" />
                             </padding>
                         </Button>
+                        <Button fx:id="addNew" alignment="BASELINE_LEFT" graphicTextGap="13.0" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleButtonClick" prefHeight="42.0" prefWidth="243.0" style="-fx-background-color: #EFC88b; -fx-background-radius: 0;" styleClass="sidebarItem" text="Add New">
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../icons/Plus.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <padding>
+                                <Insets left="32.0" />
+                            </padding>
+                        </Button>
+                        <Button fx:id="generate" alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="52.0" mnemonicParsing="false" onAction="#handleButtonClick" prefHeight="42.0" prefWidth="243.0" style="-fx-background-color: #EFC88b; -fx-background-radius: 0;" styleClass="sidebarItem" text="Generate">
+                            <graphic>
+                                <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../icons/Bard.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <padding>
+                                <Insets left="30.0" />
+                            </padding>
+                        </Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="13.0" layoutX="10.0" layoutY="94.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="243.0" style="-fx-background-color: #EFC88b; -fx-background-radius: 0;" styleClass="sidebarItem" text="Log Out">
+                            <graphic>
+                                <ImageView fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../icons/User.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <padding>
+                                <Insets left="32.0" />
+                            </padding>
+                        </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="136.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="243.0" style="-fx-background-color: #EFC88b; -fx-background-radius: 0;" styleClass="sidebarItem" text="Shut Down">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/Hibernate.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets left="32.0" />
+                     </padding>
+                  </Button>
                     </children>
                 </VBox>
             </left>
             <center>
-                <VBox fx:id="mainContent" prefHeight="200.0" prefWidth="100.0"
-                      style="-fx-background-color: #d3d5d7; -fx-background-radius: 0em;"
-                      BorderPane.alignment="CENTER" />
+                <VBox fx:id="centerContainer" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #d3d5d7; -fx-background-radius: 0em;" BorderPane.alignment="CENTER" />
             </center>
         </BorderPane>
     </children>
