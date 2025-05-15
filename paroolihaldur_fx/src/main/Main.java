@@ -19,6 +19,9 @@ public class Main extends Application {
         // Load sidebar
         Parent root = FXMLLoader.load(getClass().getResource("/FXML/SideBar.fxml"));
 
+        // Apply CSS
+        root.getStylesheets().add(getClass().getResource("/styles/styles.css").toExternalForm());
+
         // Access center area
         BorderPane borderPane = (BorderPane) ((AnchorPane) root).getChildren().get(0);
         VBox centerArea = (VBox) borderPane.getCenter();

@@ -1,0 +1,105 @@
+/* General Styles */
+.root {
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    -fx-background-color: #050517;
+}
+
+.sidebar .button {
+    -fx-background-color: #EFC88b;
+    -fx-background-radius: 0;
+    -fx-text-fill: #000;
+    -fx-padding: 10px;
+}
+
+.sidebar .button:hover {
+    -fx-background-color: #d3b77a; /* Lighter shade on hover */
+}
+
+/* Accordion Styles */
+.accordion {
+    -fx-background-color: #d3d5d7;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+}
+
+.accordion .titled-pane {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px; /* Reduce padding */
+}
+
+.accordion .titled-pane:hover {
+    -fx-background-color: #f0f0f0; /* Highlight on hover */
+}
+
+.accordion .titled-pane .content {
+    -fx-padding: 5px; /* Padding for content */
+}
+
+/* Text Styles */
+.text {
+    -fx-fill: #333;
+}
+
+/* Button Styles */
+.button {
+    -fx-background-color: #EFC88b;
+    -fx-background-radius: 5px;
+    -fx-text-fill: #000;
+    -fx-padding: 10px;
+}
+
+.button:hover {
+    -fx-background-color: #d3b77a; /* Lighter shade on hover */
+}
+
+/* Empty Message Styles */
+.empty-message {
+    -fx-text-fill: #ff0000; /* Red color for error messages */
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+}
+
+/* Accordion Styles */
+.accordion {
+    -fx-background-color: #d3d5d7;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+    -fx-padding: 0;
+}
+
+.accordion .titled-pane {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+    -fx-padding: 0;
+    -fx-background-insets: 0;
+}
+
+.accordion .titled-pane > .title {
+    -fx-background-color: #ffffff;
+    -fx-padding: 8px 10px;
+    -fx-background-radius: 5px 5px 0 0;
+}
+
+.accordion .titled-pane > .title:hover {
+    -fx-background-color: #f0f0f0;
+}
+
+.accordion .titled-pane > .content {
+    -fx-border-color: transparent;
+    -fx-padding: 5px 10px 10px 10px;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+}
+
+.accordion .titled-pane .text {
+    -fx-fill: #333;
+    -fx-font-size: 14px;
+}
