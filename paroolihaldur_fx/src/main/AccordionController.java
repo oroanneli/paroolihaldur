@@ -1,7 +1,10 @@
 package main;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
 import javafx.scene.layout.Region; // Import the Region class
 import javafx.scene.layout.VBox;
@@ -13,9 +16,29 @@ public class AccordionController {
     @FXML private Accordion passwordAccordion;
     private String currentUser ; // Store the logged-in username
 
-    // Called automatically after FXML loading
     public void initialize() {
-        loadPasswordsForUser (currentUser );
+        loadPasswordsForUser(currentUser);
+
+        // Wait for the accordion to be added to the scene before binding
+        passwordAccordion.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) {
+                // Use Platform.runLater to ensure the layout is complete
+                Platform.runLater(this::bindAccordionWidth);
+            }
+        });
+    }
+
+    private void bindAccordionWidth() {
+        // Walk up the node hierarchy safely
+        Parent parent = passwordAccordion.getParent();
+        while (parent != null) {
+            if (parent instanceof ScrollPane) {
+                ScrollPane scrollPane = (ScrollPane) parent;
+                passwordAccordion.prefWidthProperty().bind(scrollPane.widthProperty());
+                break;
+            }
+            parent = parent.getParent();
+        }
     }
 
     public void setCurrentUser (String username) {
