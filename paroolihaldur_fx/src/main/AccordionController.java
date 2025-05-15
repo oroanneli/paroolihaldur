@@ -1,14 +1,13 @@
 package main;
-import javafx.application.Platform;
+
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.control.Accordion;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TitledPane;
-import javafx.scene.layout.Region; // Import the Region class
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,29 +15,9 @@ public class AccordionController {
     @FXML private Accordion passwordAccordion;
     private String currentUser ; // Store the logged-in username
 
+    // Called automatically after FXML loading
     public void initialize() {
-        loadPasswordsForUser(currentUser);
-
-        // Wait for the accordion to be added to the scene before binding
-        passwordAccordion.sceneProperty().addListener((obs, oldScene, newScene) -> {
-            if (newScene != null) {
-                // Use Platform.runLater to ensure the layout is complete
-                Platform.runLater(this::bindAccordionWidth);
-            }
-        });
-    }
-
-    private void bindAccordionWidth() {
-        // Walk up the node hierarchy safely
-        Parent parent = passwordAccordion.getParent();
-        while (parent != null) {
-            if (parent instanceof ScrollPane) {
-                ScrollPane scrollPane = (ScrollPane) parent;
-                passwordAccordion.prefWidthProperty().bind(scrollPane.widthProperty());
-                break;
-            }
-            parent = parent.getParent();
-        }
+        loadPasswordsForUser (currentUser );
     }
 
     public void setCurrentUser (String username) {
@@ -73,6 +52,7 @@ public class AccordionController {
         TitledPane pane = new TitledPane();
         pane.setText(platform);
         pane.setCollapsible(true); // Allow collapsing
+
         VBox credentialsBox = new VBox(5); // 5px spacing between entries
         credentialsList.forEach(credentials -> {
             String user = credentials[0];
@@ -81,10 +61,15 @@ public class AccordionController {
             Text passText = new Text(String.format("Password: %s", pass));
             credentialsBox.getChildren().addAll(userText, passText);
         });
+
         pane.setContent(credentialsBox);
         pane.setExpanded(false); // Start collapsed
-        // Set the preferred height based on the content
-        pane.setPrefHeight(Region.USE_COMPUTED_SIZE); // Adjust height based on content
+
+        // Bind the preferred height to the content
+        pane.prefHeightProperty().bind(Bindings.when(pane.expandedProperty())
+                .then(credentialsBox.prefHeightProperty().add(30)) // Add some height for the title
+                .otherwise(30)); // Collapsed height
+
         return pane;
     }
 

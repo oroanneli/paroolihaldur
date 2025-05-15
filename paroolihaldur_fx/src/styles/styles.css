@@ -4,22 +4,6 @@
     -fx-font-size: 14px;
 }
 
-/* Sidebar Styles */
-.sidebar {
-    -fx-background-color: #050517;
-}
-
-.sidebar .button {
-    -fx-background-color: #EFC88b;
-    -fx-background-radius: 0;
-    -fx-text-fill: #000;
-    -fx-padding: 10px;
-}
-
-.sidebar .button:hover {
-    -fx-background-color: #d3b77a; /* Lighter shade on hover */
-}
-
 /* Accordion Styles */
 .accordion {
     -fx-background-color: #d3d5d7;
