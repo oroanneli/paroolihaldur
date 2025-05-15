@@ -31,7 +31,7 @@
     -fx-background-color: #ffffff;
     -fx-border-color: #ccc;
     -fx-border-radius: 5px;
-    -fx-padding: 5px; /* Reduce padding */
+    -fx-padding: 0; /* No padding for the titled pane */
 }
 
 .accordion .titled-pane:hover {
@@ -64,42 +64,4 @@
     -fx-text-fill: #ff0000; /* Red color for error messages */
     -fx-font-weight: bold;
     -fx-padding: 10px;
-}
-
-/* Accordion Styles */
-.accordion {
-    -fx-background-color: #d3d5d7;
-    -fx-border-color: #ccc;
-    -fx-border-radius: 5px;
-    -fx-padding: 0;
-}
-
-.accordion .titled-pane {
-    -fx-background-color: #ffffff;
-    -fx-border-color: #ccc;
-    -fx-border-radius: 5px;
-    -fx-padding: 0;
-    -fx-background-insets: 0;
-}
-
-.accordion .titled-pane > .title {
-    -fx-background-color: #ffffff;
-    -fx-padding: 8px 10px;
-    -fx-background-radius: 5px 5px 0 0;
-}
-
-.accordion .titled-pane > .title:hover {
-    -fx-background-color: #f0f0f0;
-}
-
-.accordion .titled-pane > .content {
-    -fx-border-color: transparent;
-    -fx-padding: 5px 10px 10px 10px;
-    -fx-background-color: transparent;
-    -fx-background-insets: 0;
-}
-
-.accordion .titled-pane .text {
-    -fx-fill: #333;
-    -fx-font-size: 14px;
 }

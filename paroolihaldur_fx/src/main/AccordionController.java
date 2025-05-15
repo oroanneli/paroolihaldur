@@ -49,8 +49,7 @@ public class AccordionController {
     private TitledPane createPlatformPane(String platform, ArrayList<String[]> credentialsList) {
         TitledPane pane = new TitledPane();
         pane.setText(platform);
-        pane.setCollapsible(true);
-
+        pane.setCollapsible(true); // Allow collapsing
         VBox credentialsBox = new VBox(5); // 5px spacing between entries
         credentialsList.forEach(credentials -> {
             String user = credentials[0];
@@ -59,23 +58,10 @@ public class AccordionController {
             Text passText = new Text(String.format("Password: %s", pass));
             credentialsBox.getChildren().addAll(userText, passText);
         });
-
-        // Calculate the preferred height based on content
-        int entryCount = credentialsList.size();
-        double preferredHeight = 50 + (entryCount * 40); // 30 for title, 40 per credential pair
-
-        // Set sizing properties
-        credentialsBox.setMaxHeight(Region.USE_PREF_SIZE);
         pane.setContent(credentialsBox);
-        pane.setExpanded(false);
-
-        // Bind the preferred height to the content
-        pane.prefHeightProperty().bind(
-                Bindings.when(pane.expandedProperty())
-                        .then(preferredHeight)
-                        .otherwise(30.0) // Collapsed height
-        );
-
+        pane.setExpanded(false); // Start collapsed
+        // Set the preferred height based on the content
+        pane.setPrefHeight(Region.USE_COMPUTED_SIZE); // Adjust height based on content
         return pane;
     }
 
@@ -85,6 +71,4 @@ public class AccordionController {
         emptyPane.setCollapsible(false); // Can't collapse this message
         passwordAccordion.getPanes().add(emptyPane);
     }
-
-
 }
