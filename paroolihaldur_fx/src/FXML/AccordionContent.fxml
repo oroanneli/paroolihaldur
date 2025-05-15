@@ -2,14 +2,18 @@
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+
 <AnchorPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="main.AccordionController">
     <ScrollPane AnchorPane.topAnchor="0"
                 AnchorPane.rightAnchor="0"
                 AnchorPane.bottomAnchor="0"
-                AnchorPane.leftAnchor="0">
-        <Accordion fx:id="passwordAccordion"
-                   styleClass="accordion"/>
-    </ScrollPane>
+                AnchorPane.leftAnchor="0"
+                fitToWidth="true"
+                hbarPolicy="NEVER"
+                vbarPolicy="AS_NEEDED">
+    <Accordion fx:id="passwordAccordion"
+               styleClass="accordion"/>
+</ScrollPane>
 </AnchorPane>
