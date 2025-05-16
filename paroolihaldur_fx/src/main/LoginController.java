@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import main.Main;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 public class LoginController {
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
+    @FXML private Label errorLabel;
 
     @FXML
     private void handleLogin(ActionEvent event) throws IOException {
@@ -23,7 +25,8 @@ public class LoginController {
 
         ArrayList<Kasutaja> kasutajad = FailiTootlus.loeKasutajad("meistrid.txt"); // loeb sisse olemasolevad kasutajad
 
-        if (kontrolliParool(kasutajad, kasutajanimi, parool)) {
+        if (kontrolliKasutajaOlemas(kasutajad, kasutajanimi)){
+            if (kontrolliParool(kasutajad, kasutajanimi, parool)){
             // Vaheta stseen SideBar.fxml peale
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/SideBar.fxml"));
             Parent root = loader.load();
@@ -32,9 +35,11 @@ public class LoginController {
 
             Main.primaryStage.setScene(scene);
             Main.primaryStage.setTitle("Paroolihaldur");
+            } else {
+                errorLabel.setText("Vale kasutajanimi või parool!");
+            }
         } else {
-            System.out.println("Vale kasutajanimi või parool!");
-            // Võib lisada vea kuvamise kasutajale
+            errorLabel.setText("Sellist kasutajat ei leitud");
         }
     }
 
@@ -48,12 +53,12 @@ public class LoginController {
         return false;
     }
 
-//    public static boolean kontrolliKasutajaOlemas(ArrayList<Kasutaja> kasutajad, String kasutajanimi) { // returnib true kui selline kasutaja leidub
-//        for (Kasutaja kasutaja : kasutajad) {
-//            if (kasutaja.getKasutajanimi().equals(kasutajanimi)) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
+    public static boolean kontrolliKasutajaOlemas(ArrayList<Kasutaja> kasutajad, String kasutajanimi) { // returnib true kui selline kasutaja leidub
+        for (Kasutaja kasutaja : kasutajad) {
+            if (kasutaja.getKasutajanimi().equals(kasutajanimi)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
