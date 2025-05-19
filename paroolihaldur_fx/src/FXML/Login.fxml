@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<Pane prefHeight="344.0" prefWidth="482.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.LoginController">
+<Pane minHeight="344.0" minWidth="482.0" maxHeight="344.0" maxWidth="482.0" prefHeight="344.0" prefWidth="482.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.LoginController">
    <children>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="344.0" prefWidth="306.0" style="-fx-background-color: F4E3B2;">
+    <AnchorPane minHeight="344.0" minWidth="482.0" maxHeight="344.0" maxWidth="482.0" prefHeight="344.0" prefWidth="306.0" style="-fx-background-color: F4E3B2;">
          <children>
             <Text layoutX="78.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
             <Text layoutX="78.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />

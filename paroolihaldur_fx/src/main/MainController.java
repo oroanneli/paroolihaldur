@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -31,6 +32,8 @@ public class MainController {
             loadCenter("/FXML/Add-New.fxml");
         } else if (event.getSource() == generate) {
             loadCenter("/FXML/Generate.fxml");
+        } else if (event.getSource() == logOut) {
+            handleSwitchButton();
         }
     }
 
@@ -51,4 +54,13 @@ public class MainController {
         mainBorderPane.setCenter(view);
     }
 
+    private void handleSwitchButton() throws IOException {
+        Parent newRoot = FXMLLoader.load(getClass().getResource("/FXML/login.fxml"));
+        Scene newScene = new Scene(newRoot);
+        newScene.getStylesheets().add(getClass().getResource("/styles/styles.css").toExternalForm());
+        Main.primaryStage.setScene(newScene);
+        Main.primaryStage.setMinWidth(500);
+        Main.primaryStage.setMinHeight(300);
+        Main.primaryStage.setResizable(false);
+    }
 }

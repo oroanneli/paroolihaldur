@@ -23,7 +23,7 @@ public class login extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
+        primaryStage.setResizable(false);
         Group juur = new Group();
 
         // horisontaalselt kasutajanimi: [tekstiväli]

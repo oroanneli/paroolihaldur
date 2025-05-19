@@ -32,7 +32,7 @@ public class LoginController {
             Parent root = loader.load();
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/styles/styles.css").toExternalForm());
-
+            Main.primaryStage.setResizable(true);
             Main.primaryStage.setScene(scene);
             Main.primaryStage.setTitle("Paroolihaldur");
             } else {

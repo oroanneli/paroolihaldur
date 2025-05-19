@@ -12,6 +12,9 @@ public class Main extends Application {
 
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
+        primaryStage.setResizable(false);
+        primaryStage.setMinWidth(500);
+        primaryStage.setMinHeight(300);
 
         // lae kõigepealt login
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/login.fxml"));
@@ -24,9 +27,9 @@ public class Main extends Application {
         scene.getStylesheets().add(getClass().getResource("/styles/styles.css").toExternalForm());
 
         // Set the scene to the stage and show it
-        stage.setScene(scene);
-        stage.setTitle("Paroolihaldur"); // Set a title for the window
-        stage.show();
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Paroolihaldur"); // Set a title for the window
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
