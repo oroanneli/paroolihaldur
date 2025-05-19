@@ -43,6 +43,16 @@ public class LoginController {
         }
     }
 
+    @FXML
+    private void handleCreateAccount(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/LooKasutaja.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/styles/styles.css").toExternalForm());
+
+        Main.primaryStage.setScene(scene);
+        Main.primaryStage.setTitle("Loo uus kasutaja");
+    }
 
     public static boolean kontrolliParool(ArrayList<Kasutaja> kasutajad, String kasutajanimi, String parool) { // returnib true, kui kasutajanimi ja parool klapivad
         for (Kasutaja kasutaja : kasutajad) {
