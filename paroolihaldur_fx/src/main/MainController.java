@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -21,6 +23,9 @@ public class MainController {
 
     private String currentUserM;
 
+    @FXML
+    private Spinner<Integer> GPPikkus; // genereeritud parooli pikkus
+
     public void setCurrentUserM(String kasutajanimi) throws IOException {
         this.currentUserM = kasutajanimi;
         loadAccordionView();
@@ -30,6 +35,9 @@ public class MainController {
     @FXML
     public void initialize() throws IOException {
         //loadAccordionView(); // see kutsub kohe AccordionControlleri
+        if (GPPikkus != null) { // ainult siis kui genereerimis lehel oleme
+            GPPikkus.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(4, 32, 12));
+        }
     }
 
     @FXML
