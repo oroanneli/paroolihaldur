@@ -30,6 +30,11 @@ public class LoginController {
             // Vaheta stseen SideBar.fxml peale
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/SideBar.fxml"));
             Parent root = loader.load();
+
+            MainController controllerM = loader.getController();
+            controllerM.setCurrentUserM(kasutajanimi);
+
+
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/styles/styles.css").toExternalForm());
             Main.primaryStage.setResizable(true);

@@ -19,9 +19,17 @@ public class MainController {
 
     @FXML private Button allItems, addNew, generate, logOut, shutDown;
 
+    private String currentUserM;
+
+    public void setCurrentUserM(String kasutajanimi) throws IOException {
+        this.currentUserM = kasutajanimi;
+        loadAccordionView();
+        //System.out.println(currentUser);
+    }
+
     @FXML
     public void initialize() throws IOException {
-        loadAccordionView(); // default view
+        //loadAccordionView(); // see kutsub kohe AccordionControlleri
     }
 
     @FXML
@@ -40,8 +48,9 @@ public class MainController {
     private void loadAccordionView() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/AccordionContent.fxml"));
         Parent view = loader.load();
-        AccordionController controller = loader.getController();
-        controller.setCurrentUser("külaline_5");
+        AccordionController controllerA = loader.getController();
+        controllerA.setCurrentUserA(this.currentUserM);
+
         mainBorderPane.setCenter(view);
     }
 

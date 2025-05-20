@@ -17,12 +17,12 @@ public class AccordionController {
 
     // Called automatically after FXML loading
     public void initialize() {
-        loadPasswordsForUser (currentUser );
+        loadPasswordsForUser (currentUser);
     }
 
-    public void setCurrentUser (String username) {
-        this.currentUser  = username;
-        loadPasswordsForUser (username);
+    public void setCurrentUserA(String username) {
+        this.currentUser = username;
+        loadPasswordsForUser(username);  // Lae paroolid alles siis, kui kasutajanimi on teada
     }
 
     private void loadPasswordsForUser (String username) {
