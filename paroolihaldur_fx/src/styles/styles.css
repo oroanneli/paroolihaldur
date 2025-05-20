@@ -50,6 +50,22 @@
     -fx-padding: 10px 15px;
 }
 
+
+
+.button {
+    -fx-font-size: 12px;
+    -fx-padding: 3 8 3 8;
+}
+
+.accordion .titled-pane > .title {
+    -fx-background-color: #f0f0f0;
+    -fx-font-weight: bold;
+}
+
+.accordion .titled-pane > .content {
+    -fx-padding: 10px;
+}
+
 .accordion .titled-pane .content .text {
     -fx-fill: white; /* White text for content */
 }
