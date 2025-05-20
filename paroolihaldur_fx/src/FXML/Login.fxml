@@ -8,19 +8,19 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<Pane minHeight="344.0" minWidth="482.0" maxHeight="344.0" maxWidth="482.0" prefHeight="344.0" prefWidth="482.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.LoginController">
-   <children>
-    <AnchorPane minHeight="344.0" minWidth="482.0" maxHeight="344.0" maxWidth="482.0" prefHeight="344.0" prefWidth="306.0" style="-fx-background-color: F4E3B2;">
-         <children>
-            <Text layoutX="78.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
-            <Text layoutX="78.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
-            <TextField fx:id="usernameField" layoutX="78.0" layoutY="136.0" />
-            <PasswordField fx:id="passwordField" layoutX="78.0" layoutY="205.0" />
-            <Label fx:id="errorLabel" layoutX="78.0" layoutY="240.0" prefHeight="17.0" prefWidth="206.0" style="-fx-text-fill: CF5C36;" textFill="#cf5c36" />
-            <Button layoutX="215.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
-            <Button layoutX="78.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleCreateAccount" text="Create new" />
-         </children>
-      </AnchorPane>
-    <AnchorPane layoutX="304.0" minHeight="0.0" minWidth="0.0" prefHeight="344.0" prefWidth="178.0" style="-fx-background-color: CF5C36;" />
-   </children>
+<Pane minHeight="400" minWidth="600" maxHeight="400" maxWidth="600" prefHeight="400" prefWidth="600" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.LoginController">
+    <children>
+        <AnchorPane minHeight="400" minWidth="600" maxHeight="400" maxWidth="600" prefHeight="400" prefWidth="600" style="-fx-background-color: F4E3B2;">
+            <children>
+                <Text layoutX="78.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
+                <Text layoutX="78.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
+                <TextField fx:id="usernameField" layoutX="78.0" layoutY="136.0" />
+                <PasswordField fx:id="passwordField" layoutX="78.0" layoutY="205.0" />
+                <Label fx:id="errorLabel" layoutX="78.0" layoutY="240.0" prefHeight="17.0" prefWidth="206.0" style="-fx-text-fill: CF5C36;" textFill="#cf5c36" />
+                <Button layoutX="215.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleLogin" text="Login" />
+                <Button layoutX="78.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleCreateAccount" text="Create new" />
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="400" minHeight="400" minWidth="200" prefHeight="400" prefWidth="200" style="-fx-background-color: CF5C36;" />
+    </children>
 </Pane>

@@ -14,7 +14,7 @@
                 fitToWidth="true"
                 hbarPolicy="NEVER"
                 vbarPolicy="AS_NEEDED">
-        <Accordion fx:id="passwordAccordion"
+        <Accordion fx:id="parooliAkordion"
                    styleClass="accordion"/> <!-- Ensure the accordion has the correct style class -->
     </ScrollPane>
 </AnchorPane>

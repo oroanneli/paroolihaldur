@@ -20,20 +20,31 @@ public class LoginController {
 
     @FXML
     private void handleLogin(ActionEvent event) throws IOException {
-        String kasutajanimi = usernameField.getText();
+        String kasutajanimi_siin = usernameField.getText();
         String parool = passwordField.getText();
 
         ArrayList<Kasutaja> kasutajad = FailiTootlus.loeKasutajad("meistrid.txt"); // loeb sisse olemasolevad kasutajad
 
-        if (kontrolliKasutajaOlemas(kasutajad, kasutajanimi)){
-            if (kontrolliParool(kasutajad, kasutajanimi, parool)){
+        if (kontrolliKasutajaOlemas(kasutajad, kasutajanimi_siin)){
+            if (kontrolliParool(kasutajad, kasutajanimi_siin, parool)){
             // Vaheta stseen SideBar.fxml peale
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/SideBar.fxml"));
             Parent root = loader.load();
 
             MainController controllerM = loader.getController();
-            controllerM.setCurrentUserM(kasutajanimi);
+            Kasutaja leitud = null;
+            for (Kasutaja kasutaja : kasutajad) {
+                //System.out.println(kasutaja.getKasutajanimi());
+                if (kasutaja.getKasutajanimi().equals(kasutajanimi_siin)) {
+                    leitud = kasutaja;
+                }
+            }
 
+            if (leitud != null){
+                controllerM.setCurrentUserM(leitud);
+            } else {
+                System.out.println("Ta kaotas kasutaja vahepeal ära");
+            }
 
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/styles/styles.css").toExternalForm());

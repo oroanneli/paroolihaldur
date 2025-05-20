@@ -21,13 +21,13 @@ public class MainController {
 
     @FXML private Button allItems, addNew, generate, logOut, shutDown;
 
-    private String currentUserM;
+    private Kasutaja kasutajaM;
 
     @FXML
     private Spinner<Integer> GPPikkus; // genereeritud parooli pikkus
 
-    public void setCurrentUserM(String kasutajanimi) throws IOException {
-        this.currentUserM = kasutajanimi;
+    public void setCurrentUserM(Kasutaja kasutaja) throws IOException {
+        this.kasutajaM = kasutaja;
         loadAccordionView();
         //System.out.println(currentUser);
     }
@@ -54,12 +54,14 @@ public class MainController {
     }
 
     private void loadAccordionView() throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/AccordionContent.fxml"));
-        Parent view = loader.load();
-        AccordionController controllerA = loader.getController();
-        controllerA.setCurrentUserA(this.currentUserM);
-
-        mainBorderPane.setCenter(view);
+        FXMLLoader laeDisain = new FXMLLoader(getClass().getResource("/FXML/AccordionContent.fxml"));
+        Parent view = laeDisain.load();
+        AccordionController akordion = laeDisain.getController();
+        System.out.println(kasutajaM.getKasutajanimi());
+        if (kasutajaM != null){
+            akordion.setCurrentUserA(kasutajaM);
+            mainBorderPane.setCenter(view);
+        }
     }
 
     private void loadCenter(String fxmlPath) throws IOException {

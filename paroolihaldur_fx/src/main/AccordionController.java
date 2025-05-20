@@ -12,38 +12,42 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AccordionController {
-    @FXML private Accordion passwordAccordion;
-    private String currentUser ; // Store the logged-in username
+    @FXML private Accordion parooliAkordion;
+    private Kasutaja kasutaja ; // Salvesatme kasutaja, kes hetkel on sisse logitud
 
     // Called automatically after FXML loading
     public void initialize() {
-        loadPasswordsForUser (currentUser);
+        //loadPasswordsForUser (kasutaja);
     }
 
-    public void setCurrentUserA(String username) {
-        this.currentUser = username;
-        loadPasswordsForUser(username);  // Lae paroolid alles siis, kui kasutajanimi on teada
-    }
-
-    private void loadPasswordsForUser (String username) {
-        if (username == null || username.isEmpty()) {
-            showEmptyMessage("No user logged in");
-            return;
+    public void setCurrentUserA(Kasutaja sisestatud) {
+        this.kasutaja = sisestatud;
+        if (kasutaja != null){
+            loadPasswordsForUser(kasutaja);  // Lae paroolid alles siis, kui kasutajanimi on teada
+        } else {
+            showEmptyMessage("Kasutaja pole sisse logitud");
         }
 
-        HashMap<String, ArrayList<String[]>> userPasswordMap = FailiTootlus.loeParoolid(username);
-        updateAccordion(userPasswordMap);
     }
 
-    private void updateAccordion(HashMap<String, ArrayList<String[]>> data) {
-        passwordAccordion.getPanes().clear(); // Clear existing content
+    private void loadPasswordsForUser (Kasutaja kasutaja) {
+        String nimi = kasutaja.getKasutajanimi();
+        if (nimi == null || nimi.isEmpty()) {
+            showEmptyMessage("Kasutaja pole sisse logitud");
+            return;
+        }
+        uuendaAkordion(kasutaja.getSonastik());
+    }
 
-        if (data.isEmpty()) {
-            showEmptyMessage("No password data available");
+    private void uuendaAkordion(HashMap<String, ArrayList<String[]>> paroolid) {
+        parooliAkordion.getPanes().clear(); // Clear existing content
+
+        if (paroolid.isEmpty()) {
+            showEmptyMessage("Paroole ei leitud");
         } else {
-            data.forEach((platform, credentialsList) -> {
+            paroolid.forEach((platform, credentialsList) -> {
                 TitledPane pane = createPlatformPane(platform, credentialsList);
-                passwordAccordion.getPanes().add(pane);
+                parooliAkordion.getPanes().add(pane);
             });
         }
     }
@@ -77,6 +81,6 @@ public class AccordionController {
         TitledPane emptyPane = new TitledPane();
         emptyPane.setText(message);
         emptyPane.setCollapsible(false); // Can't collapse this message
-        passwordAccordion.getPanes().add(emptyPane);
+        parooliAkordion.getPanes().add(emptyPane);
     }
 }
