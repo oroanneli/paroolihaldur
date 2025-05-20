@@ -115,8 +115,8 @@ public class AccordionController {
     private void haldaMuuda(String platform, String praeguneKasutajanimi, String praeguneParool) {
         // Loome doaloogi muutmise jaoks
         Dialog<Pair<String, String>> dialog = new Dialog<>();
-        dialog.setTitle("Muuda andmeid");
-        dialog.setHeaderText("Muuda andmeid platformile " + platform);
+        dialog.setTitle("Muuda andmeid ");
+        dialog.setHeaderText("Muuda platformi: " + platform +" andmeid");
 
         // Määrame nupud
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
@@ -128,8 +128,7 @@ public class AccordionController {
         grid.setPadding(new Insets(20, 150, 10, 10));
 
         TextField kasutajanimiVäli = new TextField(praeguneKasutajanimi);
-        PasswordField paroolVäli = new PasswordField();
-        paroolVäli.setText(praeguneParool);
+        TextField paroolVäli = new TextField(praeguneParool);
 
         grid.add(new Label("Kasutajanimi: "), 0, 0);
         grid.add(kasutajanimiVäli, 1, 0);
@@ -152,7 +151,7 @@ public class AccordionController {
         Optional<Pair<String, String>> tulem = dialog.showAndWait();
 
         tulem.ifPresent(uuedVaartused -> {
-            // Uendame parooli sõnastikus
+            // Uuendame parooli sõnastikus
             HashMapTootlus.muudak(kasutaja.getSonastik(), platform, praeguneKasutajanimi, uuedVaartused.getKey());
             HashMapTootlus.muudap(kasutaja.getSonastik(), platform, uuedVaartused.getKey(), uuedVaartused.getValue());
 
@@ -170,7 +169,7 @@ public class AccordionController {
         Alert teavitus = new Alert(Alert.AlertType.CONFIRMATION);
         teavitus.setTitle("Kustuta andmed");
         teavitus.setHeaderText("Kustuta " + platform + " andmeid");
-        teavitus.setContentText("Kas oled kindel, et soovid kustutada " + username + "andmed platformil " + platform + "?");
+        teavitus.setContentText("Kas oled kindel, et soovid kustutada kasutaja " + username + " andmed platformil " + platform + "?");
 
         Optional<ButtonType> tulem = teavitus.showAndWait();
         if (tulem.isPresent() && tulem.get() == ButtonType.OK) {

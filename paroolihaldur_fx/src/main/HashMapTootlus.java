@@ -9,18 +9,18 @@ public class HashMapTootlus {
     // võtab argumendiks kasutaja sõnastiku ja allika ning prindib välja kasutajanime ja parooli (vajadusel mitu tk)
     public static void kuva(HashMap<String, ArrayList<String[]>> sonastik, String allikas){
         if (!sonastik.containsKey(allikas)){
-            System.out.println("Sellist allikat ei leitud");
+            //System.out.println("Sellist allikat ei leitud");
         }
         else{
-            System.out.println(allikas);
+            //System.out.println(allikas);
             ArrayList<String[]> vaartused = sonastik.get(allikas); // sõnastiku väärtused
 
             for (int i = 0; i < vaartused.size(); i++) { // käib läbi listi ja kuvab kõik kasutajanimed ja paroolid
                 String[] list = vaartused.get(i);
-                System.out.println("Kasutajanimi: " + list[0] + ", Parool: " + list[1]);
+                //System.out.println("Kasutajanimi: " + list[0] + ", Parool: " + list[1]);
 
             }
-            System.out.println(); //tühi rida disaini eesmärgil
+            //System.out.println(); //tühi rida disaini eesmärgil
         }
 
     }
@@ -58,20 +58,20 @@ public class HashMapTootlus {
 
                 if (kasutaja.equals(kasutajanimi)) { // oleme õige paari leidnud ning eemaldame selle nüüd
                     iterator.remove();
-                    System.out.println("Edukalt kustutatud "+allikas+" kasutaja '"+ kasutaja+"' parool '"+parool+"'.");
+                    //System.out.println("Edukalt kustutatud "+allikas+" kasutaja '"+ kasutaja+"' parool '"+parool+"'.");
                     leitud = true;
                     break;
                 }
             }
             if (!leitud){ // juhul kui kogu sõnastik käidi läbi ja ei leitud sobivat paari
-                System.out.println("Kasutajanime '" + kasutajanimi + "' ei leitud allika " + allikas + " paroolide hulgast. Palun kontrollige õigekirja.");
+                //System.out.println("Kasutajanime '" + kasutajanimi + "' ei leitud allika " + allikas + " paroolide hulgast. Palun kontrollige õigekirja.");
             }
             if (kasutajad.isEmpty()) { // kui kustutatud parool oli viimane, eemaldame kogu kirje sõnastikust
                 sonastik.remove(allikas);
             }
         }
         else{ // sonastikus ei leidu sellist võtit
-            System.out.println("Allikat '" + allikas + "' ei leitud. Palun kontrollige õigekirja.");
+            //System.out.println("Allikat '" + allikas + "' ei leitud. Palun kontrollige õigekirja.");
         }
     }
 
@@ -89,17 +89,17 @@ public class HashMapTootlus {
 
                 if (kasutaja.equals(kasutajanimi)) { // oleme õige paari leidnud
                     paar[1]=uusparool;
-                    System.out.println("Edukalt muudetud "+allikas+" kasutaja '"+ kasutaja+"' parool.");
+                    //System.out.println("Edukalt muudetud "+allikas+" kasutaja '"+ kasutaja+"' parool.");
                     leitud = true;
                     break;
                 }
             }
             if (!leitud){ // juhul kui kogu sõnastik käidi läbi ja ei leitud sobivat paari
-                System.out.println("Kasutajanime '" + kasutajanimi + "' ei leitud allika " + allikas + " paroolide hulgast. Palun kontrollige õigekirja.");
+                //System.out.println("Kasutajanime '" + kasutajanimi + "' ei leitud allika " + allikas + " paroolide hulgast. Palun kontrollige õigekirja.");
             }
         }
         else{ // sonastikus ei leidu sellist võtit
-            System.out.println("Allikat '" + allikas + "' ei leitud. Palun kontrollige õigekirja.");
+            //System.out.println("Allikat '" + allikas + "' ei leitud. Palun kontrollige õigekirja.");
         }
     }
 
@@ -117,17 +117,17 @@ public class HashMapTootlus {
                 if (kasutaja.equals(kasutajanimi)) { // oleme õige paari leidnud
                     String vanakas = paar[0];
                     paar[0]=uuskasutajanimi;
-                    System.out.println("Edukalt muudetud allika " +allikas + " kasutajanimi '" + vanakas + "' -> '" + uuskasutajanimi + "'");
+                    //System.out.println("Edukalt muudetud allika " +allikas + " kasutajanimi '" + vanakas + "' -> '" + uuskasutajanimi + "'");
                     leitud = true;
                     break;
                 }
             }
             if (!leitud){ // juhul kui kogu sõnastik käidi läbi ja ei leitud sobivat paari
-                System.out.println("Kasutajanime '" + kasutajanimi + "' ei leitud allika " + allikas + " paroolide hulgast. Palun kontrollige õigekirja.");
+                //System.out.println("Kasutajanime '" + kasutajanimi + "' ei leitud allika " + allikas + " paroolide hulgast. Palun kontrollige õigekirja.");
             }
         }
         else{ // sonastikus ei leidu sellist võtit
-            System.out.println("Allikat '" + allikas + "' ei leitud. Palun kontrollige õigekirja.");
+            //System.out.println("Allikat '" + allikas + "' ei leitud. Palun kontrollige õigekirja.");
         }
     }
 

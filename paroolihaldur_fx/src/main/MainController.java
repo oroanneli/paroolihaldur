@@ -57,7 +57,7 @@ public class MainController {
         FXMLLoader laeDisain = new FXMLLoader(getClass().getResource("/FXML/AccordionContent.fxml"));
         Parent view = laeDisain.load();
         AccordionController akordion = laeDisain.getController();
-        System.out.println(kasutajaM.getKasutajanimi());
+        //System.out.println(kasutajaM.getKasutajanimi());
         if (kasutajaM != null){
             akordion.setCurrentUserA(kasutajaM);
             mainBorderPane.setCenter(view);
