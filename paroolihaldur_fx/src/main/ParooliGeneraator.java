@@ -7,7 +7,7 @@ public class ParooliGeneraator{
      * @param pikkus parooli soovitud pikkus
      * @return tagastab vähemalt 4 elementi pika parooli
      */
-    public static String genereeritudParool(int pikkus){
+    public static String genereeriParool(int pikkus){
          String väiksedTähed = "abcdefghijklmnopqrstuvwxyzöäüõ";
          String suuredTähed = "ABCDEFGHIJKLMNOPQRSTUVWXYZÖÄÜÕ";
          String numbrid = "0123456789";

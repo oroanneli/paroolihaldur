@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -17,7 +16,7 @@ public class AddNewController {
     @FXML private Label errorLabel;
 
     @FXML
-    private void handleCreateNew(ActionEvent event) throws IOException {
+    private void handleCreateNew(ActionEvent event) throws TühiVäliErind {
         // kasutajal tuleb sisestada andmed:
         String allikasText = allikas.getText();
         String kasutajanimiText = kasutajanimi.getText();
@@ -25,9 +24,10 @@ public class AddNewController {
 
         Kasutaja aktiivneKasutaja = Sessioon.getKasutajanimi();
 
-        if (allikasText.isEmpty() || kasutajanimiText.isEmpty() || paroolText.isEmpty()) {
-            errorLabel.setText("Täida kõik väljad!");
-            return;
+        try {
+            kasVäljadTäidetud(allikasText,kasutajanimiText,paroolText);
+        } catch (Exception e){
+            errorLabel.setText(e.getMessage());
         }
 
         // sõnastik kasutaja paroolidega
@@ -40,6 +40,12 @@ public class AddNewController {
         allikas.clear();
         kasutajanimi.clear();
         parool.clear();
+    }
+
+    private void kasVäljadTäidetud(String allikas, String Kasutaja, String Parool) throws TühiVäliErind{
+        if (allikas.isEmpty() || Kasutaja.isEmpty() || Parool.isEmpty()) {
+            throw new TühiVäliErind("Täida kõik väljad!");
+        }
     }
 
 

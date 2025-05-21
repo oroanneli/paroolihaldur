@@ -13,8 +13,8 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
         primaryStage.setResizable(false);
-        primaryStage.setMinWidth(500);
-        primaryStage.setMinHeight(300);
+        Main.primaryStage.setMinWidth(600);
+        Main.primaryStage.setMinHeight(400);
 
         // lae kõigepealt login
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/login.fxml"));

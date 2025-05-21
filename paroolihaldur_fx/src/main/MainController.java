@@ -6,13 +6,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -20,12 +16,13 @@ public class MainController {
     @FXML private BorderPane mainBorderPane;
     @FXML private VBox centerContainer;
 
-    @FXML private Button allItems, addNew, generate, logOut, shutDown;
+    @FXML private Button allItems, addNew, generate, logOut, shutDown, genereeriParool;
 
     private Kasutaja kasutajaM;
 
-    @FXML
-    private Spinner<Integer> GPPikkus; // genereeritud parooli pikkus
+
+    @FXML private Spinner<Integer> GPPikkus; // genereeritud parooli pikkus
+    @FXML private TextField genereeritudParool;
 
     public void setCurrentUserM(Kasutaja kasutaja) throws IOException {
         this.kasutajaM = kasutaja;
@@ -51,10 +48,17 @@ public class MainController {
             loadCenter("/FXML/Generate.fxml");
         } else if (event.getSource() == logOut) {
             handleSwitchButton();
+        } else if (event.getSource() == genereeriParool) {
+            int pikkus = GPPikkus.getValue();
+            String parool = ParooliGeneraator.genereeriParool(pikkus);
+            genereeritudParool.setText(parool);
+        } else if (event.getSource() == shutDown) {
+            Platform.exit();
         }
     }
 
     private void loadAccordionView() throws IOException {
+        Main.primaryStage.setWidth(700.0);
         FXMLLoader laeDisain = new FXMLLoader(getClass().getResource("/FXML/AccordionContent.fxml"));
         Parent view = laeDisain.load();
         AccordionController akordion = laeDisain.getController();
@@ -79,14 +83,8 @@ public class MainController {
         Scene newScene = new Scene(newRoot);
         newScene.getStylesheets().add(getClass().getResource("/styles/styles.css").toExternalForm());
         Main.primaryStage.setScene(newScene);
-        Main.primaryStage.setMinWidth(500);
-        Main.primaryStage.setMinHeight(300);
         Main.primaryStage.setResizable(false);
-    }
-
-    // kinnipanemiseks
-    @FXML
-    private void handleShutdown(ActionEvent event) {
-        Platform.exit(); // sulgeb JavaFX rakenduse korrektselt
+        Main.primaryStage.setMaximized(false);
+        Main.primaryStage.setWidth(600.0);
     }
 }
