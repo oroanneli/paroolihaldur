@@ -58,7 +58,6 @@ public class MainController {
     }
 
     private void loadAccordionView() throws IOException {
-        Main.primaryStage.setWidth(700.0);
         FXMLLoader laeDisain = new FXMLLoader(getClass().getResource("/FXML/AccordionContent.fxml"));
         Parent view = laeDisain.load();
         AccordionController akordion = laeDisain.getController();
@@ -67,6 +66,7 @@ public class MainController {
             akordion.setCurrentUserA(kasutajaM);
             mainBorderPane.setCenter(view);
         }
+        Main.primaryStage.setWidth(700.0);
     }
 
     private void loadCenter(String fxmlPath) throws IOException {
