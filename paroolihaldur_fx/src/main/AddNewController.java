@@ -47,10 +47,4 @@ public class AddNewController {
             throw new TühiVäliErind("Täida kõik väljad!");
         }
     }
-
-
-
-
-
-
 }

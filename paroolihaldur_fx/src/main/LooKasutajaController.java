@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import main.Main;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,15 +19,17 @@ public class LooKasutajaController {
 
     // uue kasutaja lisamise nupu töö
     @FXML
-    private void handleCreateAccount(ActionEvent event) throws IOException {
+    private void handleCreateAccount(ActionEvent event) throws TühiVäliErind, IOException {
         String kasutajanimi = usernameField.getText();
         String parool1 = passwordField1.getText();
         String parool2 = passwordField2.getText();
         // sõnastik, kus on kõik olemasolevad kasutajad
         ArrayList<Kasutaja> kasutajad = FailiTootlus.loeKasutajad("meistrid.txt");
 
-        if (kasutajanimi.isEmpty() || parool1.isEmpty() || parool2.isEmpty()) {
-            errorLabel.setText("Täida kõik väljad!");
+        try {
+            kasVäljadTäidetud(kasutajanimi,parool1,parool2);
+        } catch (Exception e){
+            errorLabel.setText(e.getMessage());
             return;
         }
 
@@ -70,5 +71,11 @@ public class LooKasutajaController {
 
         Main.primaryStage.setScene(scene);
         Main.primaryStage.setTitle("Paroolihaldur");
+    }
+
+    private void kasVäljadTäidetud(String väli1, String väli2, String väli3) throws TühiVäliErind{
+        if (väli1.isEmpty() || väli2.isEmpty() || väli3.isEmpty()) {
+            throw new TühiVäliErind("Täida kõik väljad!");
+        }
     }
 }
