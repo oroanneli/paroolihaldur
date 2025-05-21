@@ -1,5 +1,6 @@
 package main;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -81,5 +82,11 @@ public class MainController {
         Main.primaryStage.setMinWidth(500);
         Main.primaryStage.setMinHeight(300);
         Main.primaryStage.setResizable(false);
+    }
+
+    // kinnipanemiseks
+    @FXML
+    private void handleShutdown(ActionEvent event) {
+        Platform.exit(); // sulgeb JavaFX rakenduse korrektselt
     }
 }

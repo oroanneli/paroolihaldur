@@ -83,10 +83,10 @@ public class FailiTootlus {
             while ((rida = luger.readLine()) != null) {
                 //System.out.println(rida);
                 String[] osad = rida.split(" %¤% ");
-                //String kasutajanimi = Krüpteerimine.dekrüpteeri(osad[0]);
-                String kasutajanimi = osad[0];
-                //String master_password = Krüpteerimine.dekrüpteeri(osad[1]);
-                String master_password = osad[1];
+                String kasutajanimi = Krüpteerimine.dekrüpteeri(osad[0]);
+                //String kasutajanimi = osad[0];
+                String master_password = Krüpteerimine.dekrüpteeri(osad[1]);
+                //String master_password = osad[1];
                 HashMap<String, ArrayList<String[]>> sonastik = loeParoolid(kasutajanimi);
                 Kasutaja vahekasutaja = new Kasutaja(kasutajanimi, master_password, sonastik);
                 kasutajad.add(vahekasutaja);
@@ -112,8 +112,8 @@ public class FailiTootlus {
                 String parool = kas.getMaster_password();
                 // Kirjutame järgmise formaadina: "kasutajanimi %¤% parool"
                 //System.out.println(kasutajanimi + " %¤% " + parool);
-                //kirjutaja.write(Krüpteerimine.krüpteeri(kasutajanimi) + " %¤% " + Krüpteerimine.krüpteeri(parool));
-                kirjutaja.write(kasutajanimi + " %¤% " + parool);
+                kirjutaja.write(Krüpteerimine.krüpteeri(kasutajanimi) + " %¤% " + Krüpteerimine.krüpteeri(parool));
+                //kirjutaja.write(kasutajanimi + " %¤% " + parool);
                 kirjutaja.newLine(); // iga uue kirje jaoks loome uue rea
 
             }
