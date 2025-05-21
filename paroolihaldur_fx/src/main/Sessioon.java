@@ -1,6 +1,5 @@
 package main;
-import main.Kasutaja;
-
+// vajalik klass, et addnew teaks, kes on kasutaja
 public class Sessioon {
     private static Kasutaja kasutaja;
 

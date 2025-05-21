@@ -18,12 +18,13 @@ public class LooKasutajaController {
     @FXML private PasswordField passwordField2;
     @FXML private Label errorLabel;
 
+    // uue kasutaja lisamise nupu töö
     @FXML
     private void handleCreateAccount(ActionEvent event) throws IOException {
-        String kasutajanimi = usernameField.getText().trim();
+        String kasutajanimi = usernameField.getText();
         String parool1 = passwordField1.getText();
         String parool2 = passwordField2.getText();
-
+        // sõnastik, kus on kõik olemasolevad kasutajad
         ArrayList<Kasutaja> kasutajad = FailiTootlus.loeKasutajad("meistrid.txt");
 
         if (kasutajanimi.isEmpty() || parool1.isEmpty() || parool2.isEmpty()) {
@@ -41,7 +42,7 @@ public class LooKasutajaController {
             return;
         }
 
-        // Loo kasutaja
+        // kasutaja loomine
         HashMap<String, ArrayList<String[]>> sonastik = new HashMap<>();
         Kasutaja uusKasutaja = new Kasutaja(kasutajanimi, parool1, sonastik);
         kasutajad.add(uusKasutaja);
@@ -49,7 +50,7 @@ public class LooKasutajaController {
         FailiTootlus.salvestaParoolid(kasutajanimi, sonastik);
         FailiTootlus.salvestaKasutajad(kasutajad, "meistrid.txt");
 
-        // Tagasi login aknale
+        // Tagasi login lehele
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Login.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
