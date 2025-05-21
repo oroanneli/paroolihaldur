@@ -40,8 +40,10 @@ public class LoginController {
                 }
             }
 
+
             if (leitud != null){
                 controllerM.setCurrentUserM(leitud);
+                Sessioon.setKasutajanimi(leitud);
             } else {
                 System.out.println("Ta kaotas kasutaja vahepeal ära");
             }
