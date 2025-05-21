@@ -8,19 +8,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<Pane minHeight="400" minWidth="600" maxHeight="400" maxWidth="600" prefHeight="400" prefWidth="600"
-      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="main.LooKasutajaController">   <children>
-      <AnchorPane minHeight="400" minWidth="600" maxHeight="400" maxWidth="600" prefHeight="400" prefWidth="600" style="-fx-background-color: F4E3B2;">
+<Pane maxHeight="400" maxWidth="600" minHeight="400" minWidth="600" prefHeight="400" prefWidth="600" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.LooKasutajaController">   <children>
+      <AnchorPane maxHeight="400" maxWidth="600" minHeight="400" minWidth="600" prefHeight="400" prefWidth="600" style="-fx-background-color: F4E3B2;">
          <children>
-            <Text layoutX="78.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
-            <Text layoutX="76.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
+            <Text layoutX="78.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parool" />
+            <Text layoutX="78.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kasutajanimi" />
             <TextField fx:id="usernameField" layoutX="76.0" layoutY="79.0" />
             <PasswordField fx:id="passwordField1" layoutX="76.0" layoutY="134.0" />
             <PasswordField fx:id="passwordField2" layoutX="78.0" layoutY="188.0" />
             <Label fx:id="errorLabel" layoutX="78.0" layoutY="240.0" prefHeight="17.0" prefWidth="206.0" style="-fx-text-fill: CF5C36;" textFill="#cf5c36" />
-            <Button layoutX="215.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleCreateAccount" text="Create" />
-            <Text layoutX="78.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repeat password" />
+            <Button layoutX="215.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleCreateAccount" text="Loo kasutaja" />
+            <Text layoutX="78.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Korda parooli" />
+            <Button layoutX="78.0" layoutY="258.0" mnemonicParsing="false" onAction="#handleTagasi" text="Tagasi" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="400" minHeight="400" minWidth="200" prefHeight="400" prefWidth="200" style="-fx-background-color: CF5C36;" />

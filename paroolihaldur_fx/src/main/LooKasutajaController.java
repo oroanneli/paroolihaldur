@@ -59,4 +59,16 @@ public class LooKasutajaController {
         Main.primaryStage.setScene(scene);
         Main.primaryStage.setTitle("Paroolihaldur");
     }
+
+    @FXML
+    private void handleTagasi(ActionEvent event) throws IOException{
+        // Tagasi login lehele
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/Login.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/styles/styles.css").toExternalForm());
+
+        Main.primaryStage.setScene(scene);
+        Main.primaryStage.setTitle("Paroolihaldur");
+    }
 }
