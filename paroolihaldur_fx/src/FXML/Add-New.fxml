@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="274.0" layoutY="175.0" mnemonicParsing="false" text="New" />
+      <Button layoutX="344.0" layoutY="303.0" mnemonicParsing="false" onAction="#handleCreateNew" text="Lisa" />
+      <TextField fx:id="allikas" layoutX="106.0" layoutY="130.0" />
+      <TextField fx:id="kasutajanimi" layoutX="106.0" layoutY="187.0" />
+      <TextField fx:id="parool" layoutX="106.0" layoutY="244.0" />
+      <Text layoutX="106.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Allikas" />
+      <Text layoutX="106.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kasutajanimi" />
+      <Text layoutX="106.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Parool" />
    </children>
 </AnchorPane>
