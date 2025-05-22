@@ -21,11 +21,13 @@ public class AccordionController {
     @FXML private Accordion parooliAkordion;
     private Kasutaja kasutaja ; // Salvesatme kasutaja, kes hetkel on sisse logitud
 
-    // Called automatically after FXML loading
+    // FXML fail laeb üles automaatselt ka akordioni
     public void initialize() {
         //loadPasswordsForUser (kasutaja);
     }
 
+
+    // seame kes on kasutaja
     public void setCurrentUserA(Kasutaja sisestatud) {
         this.kasutaja = sisestatud;
         if (kasutaja != null){
@@ -36,6 +38,8 @@ public class AccordionController {
 
     }
 
+
+    // laeme kasutaja paroolid üles
     private void loadPasswordsForUser (Kasutaja kasutaja) {
         String nimi = kasutaja.getKasutajanimi();
         if (nimi == null || nimi.isEmpty()) {
@@ -45,8 +49,10 @@ public class AccordionController {
         uuendaAkordion(kasutaja.getSonastik());
     }
 
+
+    // uuendab akordion
     private void uuendaAkordion(HashMap<String, ArrayList<String[]>> paroolid) {
-        parooliAkordion.getPanes().clear(); // Clear existing content
+        parooliAkordion.getPanes().clear(); // Tühjendame eelneva akordioni
 
         if (paroolid.isEmpty()) {
             valjasta_sonum("Paroole ei leitud");
@@ -58,67 +64,69 @@ public class AccordionController {
         }
     }
 
+
+    //kuvab akordioni päriselt ekraanile
     private TitledPane looPlatform(String platform, ArrayList<String[]> credentialsList) {
         TitledPane pane = new TitledPane();
         pane.setText(platform);
         pane.setCollapsible(true); // Voin uhe platfromi info sulgeda
 
-        VBox credentialsBox = new VBox(5); // 5px vahed
-
-
-
-
+        VBox andmeteKast = new VBox(5); // 5px vahed
 
         for (String[] credentials : credentialsList){
-            String user = credentials[0];
-            String pass = credentials[1];
+            String kasutaja1 = credentials[0];
+            String parool1 = credentials[1];
 
             HBox sisendKast = new HBox(10); // Ümbris paroolidele/kasutajanimedele
             sisendKast.setAlignment(Pos.CENTER_LEFT);
 
             // kasutajanime ja parooli kirjed
             VBox tekstkast = new VBox(2);
-            Text nimi = new Text(String.format("Kasutajanimi: %s", user));
-            Text parool = new Text(String.format("Parool: %s", pass));
+            Text nimi = new Text(String.format("Kasutajanimi: %s", kasutaja1));
+            Text parool = new Text(String.format("Parool: %s", parool1));
             tekstkast.getChildren().addAll(nimi, parool);
 
             // Muutmisnupp
             Button muuda = new Button("Muuda");
-            muuda.setOnAction(e -> haldaMuuda(platform, user, pass));
+            muuda.setOnAction(e -> haldaMuuda(platform, kasutaja1, parool1));
 
             // Kustutamise nupp
             Button kustuta = new Button("Kustuta");
-            kustuta.setOnAction(e -> haldaKustuta(platform, user));
+            kustuta.setOnAction(e -> haldaKustuta(platform, kasutaja1));
 
             sisendKast.getChildren().addAll(tekstkast, muuda, kustuta);
-            credentialsBox.getChildren().add(sisendKast);
+            andmeteKast.getChildren().add(sisendKast);
         }
 
-        pane.setContent(credentialsBox);
-        pane.setExpanded(false); // Start collapsed
+        pane.setContent(andmeteKast);
+        pane.setExpanded(false); // Akordioni avades on kõik väljad suletud
 
         // Laeme akordioni õige kõrgusega
         pane.prefHeightProperty().bind(Bindings.when(pane.expandedProperty())
-                .then(credentialsBox.prefHeightProperty().add(30)) // Lisame ruumi tiitlile
+                .then(andmeteKast.prefHeightProperty().add(30)) // Lisame ruumi tiitlile
                 .otherwise(30)); // Kokkupandult kõrgus
 
         return pane;
     }
 
+
+    // aitab errorite kirjeid väljastada
     private void valjasta_sonum(String message) {
-        TitledPane emptyPane = new TitledPane();
-        emptyPane.setText(message);
-        emptyPane.setCollapsible(false); // seda sonumit ei saa sulgeda
-        parooliAkordion.getPanes().add(emptyPane);
+        TitledPane tuhi = new TitledPane();
+        tuhi.setText(message);
+        tuhi.setCollapsible(false); // seda sonumit ei saa sulgeda
+        parooliAkordion.getPanes().add(tuhi);
     }
 
+
+    //tegeleb sellega, et kasutaja saaks oma paroole/kasutajaniemsid muuta
     private void haldaMuuda(String platform, String praeguneKasutajanimi, String praeguneParool) {
         // Loome doaloogi muutmise jaoks
         Dialog<Pair<String, String>> dialog = new Dialog<>();
         dialog.setTitle("Muuda andmeid ");
         dialog.setHeaderText("Muuda platformi: " + platform +" andmeid");
 
-        // Määrame nupud
+        // Määrame nupu
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
 
         // Loome kasutajanime ja parooli väljad
@@ -164,6 +172,8 @@ public class AccordionController {
         });
     }
 
+
+    //tegeleb sellega et kasutaja saaks oma kasutajanimesid/paroole kustutada
     private void haldaKustuta(String platform, String username) {
         // Kinnituse dialoog
         Alert teavitus = new Alert(Alert.AlertType.CONFIRMATION);

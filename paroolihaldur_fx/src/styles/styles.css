@@ -1,11 +1,10 @@
-/* General Styles */
+/* Üldine stiil */
 .root {
     -fx-font-family: "Arial";
     -fx-font-size: 14px;
 }
 
-/* Accordion Styles */
-/* ===== New Accordion Styles ===== */
+/* Akordioni stiilid */
 .accordion {
     -fx-background-color: transparent;
     -fx-padding: 10px;
@@ -13,7 +12,7 @@
 
 .accordion .titled-pane {
     -fx-background-color:  	#D0D0D0;
-    -fx-border-color: #EFC88b;     /* Gold border to match buttons */
+    -fx-border-color: #EFC88b;
     -fx-border-radius: 3px;
     -fx-border-width: 1px;
     -fx-padding: 5px;
@@ -32,7 +31,7 @@
 }
 
 .accordion .titled-pane > .title > .text {
-    -fx-fill: #EFC88b; /* Gold text to match buttons */
+    -fx-fill: #EFC88b;
     -fx-font-weight: bold;
 }
 
@@ -41,11 +40,11 @@
 }
 
 .accordion .titled-pane > .title > .arrow-button .arrow {
-    -fx-background-color: #EFC88b; /* Gold arrow to match theme */
+    -fx-background-color: #EFC88b;
 }
 
 .accordion .titled-pane .content {
-    -fx-background-color:  	#f2d3a1; /* Same as pane background */
+    -fx-background-color:  	#f2d3a1;
     -fx-border-color: transparent;
     -fx-padding: 10px 15px;
 }
@@ -60,7 +59,7 @@
     -fx-padding: 10px;
 }
 
-/* ===== Improved ScrollPane to Match ===== */
+/* ===== kerimisriba ===== */
 .scroll-pane {
     -fx-background-color:  	#D0D0D0;
 }
@@ -83,37 +82,10 @@
     -fx-background-color: transparent;
     -fx-padding: 0 5px;
 }
-
 .scroll-pane .scroll-bar:vertical .increment-arrow,
 .scroll-pane .scroll-bar:vertical .decrement-arrow {
     -fx-background-color: #EFC88b;
 }
-
-/* Text Styles */
-.text {
-    -fx-fill: #333;
-}
-
-/* Button Styles */
-.button {
-    -fx-background-color: #EFC88b;
-    -fx-background-radius: 5px;
-    -fx-text-fill: #000;
-    -fx-padding: 10px;
-}
-
-.button:hover {
-    -fx-background-color: #d3b77a; /* Lighter shade on hover */
-}
-
-/* Empty Message Styles */
-.empty-message {
-    -fx-text-fill: #ff0000; /* Red color for error messages */
-    -fx-font-weight: bold;
-    -fx-padding: 10px;
-}
-
-/* ScrollPane styling */
 .scroll-pane {
     -fx-background-color: transparent;
     -fx-padding: 0;
@@ -129,11 +101,32 @@
     -fx-background-radius: 5px;
 }
 
-/* Disable horizontal scrollbar completely */
-.scroll-pane .scroll-bar:horizontal {
-    -fx-opacity: 0;
-    -fx-pref-width: 0;
+
+/* teksti stiilid */
+.text {
+    -fx-fill: #333;
 }
+
+/* nupu stiilid */
+.button {
+    -fx-background-color: #EFC88b;
+    -fx-background-radius: 5px;
+    -fx-text-fill: #000;
+    -fx-padding: 10px;
+}
+
+.button:hover {
+    -fx-background-color: #d3b77a;
+}
+
+/* Sõnumi stiilid */
+.empty-message {
+    -fx-text-fill: #ff0000;
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+}
+
+/* Küljemenüü stiilid */
 
 .sidebarItem:hover{
     -fx-background-color: #EFC88B;

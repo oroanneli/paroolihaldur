@@ -6,7 +6,7 @@
 <AnchorPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="main.AccordionController"
-            stylesheets="@../styles/styles.css"> <!-- Link to the stylesheet -->
+            stylesheets="@../styles/styles.css"> <!-- ühendame stiililehega -->
     <ScrollPane AnchorPane.topAnchor="0"
                 AnchorPane.rightAnchor="0"
                 AnchorPane.bottomAnchor="0"
@@ -15,6 +15,6 @@
                 hbarPolicy="NEVER"
                 vbarPolicy="AS_NEEDED">
         <Accordion fx:id="parooliAkordion"
-                   styleClass="accordion"/> <!-- Ensure the accordion has the correct style class -->
+                   styleClass="accordion"/>
     </ScrollPane>
 </AnchorPane>
