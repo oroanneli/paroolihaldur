@@ -8,19 +8,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
 public class MainController {
     @FXML private BorderPane mainBorderPane;
-    @FXML private VBox centerContainer;
-
     @FXML private Button allItems, addNew, generate, logOut, shutDown, genereeriParool;
-
     private Kasutaja kasutajaM;
-
-
     @FXML private Spinner<Integer> GPPikkus; // genereeritud parooli pikkus
     @FXML private TextField genereeritudParool;
 
@@ -31,7 +25,7 @@ public class MainController {
     }
 
     @FXML
-    public void initialize() throws IOException {
+    public void initialize() {
         //loadAccordionView(); // see kutsub kohe AccordionControlleri
         if (GPPikkus != null) { // ainult siis kui genereerimis lehel oleme
             GPPikkus.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(4, 32, 12));

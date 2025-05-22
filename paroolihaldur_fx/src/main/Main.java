@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Main extends Application {
-    public static Stage primaryStage; // oota ma ei tea
+    public static Stage primaryStage; // isendiväli selleks et saaks "stage"'i teistest klassidest muuta
 
     public void start(Stage stage) throws IOException {
         primaryStage = stage;
@@ -19,16 +19,13 @@ public class Main extends Application {
         // lae kõigepealt login
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/login.fxml"));
         Parent root = loader.load();
-
-        // Create a scene with the loaded root
         Scene scene = new Scene(root);
 
-        // Link the CSS stylesheet
+        // ühendab css'i stseenile
         scene.getStylesheets().add(getClass().getResource("/styles/styles.css").toExternalForm());
 
-        // Set the scene to the stage and show it
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Paroolihaldur"); // Set a title for the window
+        primaryStage.setTitle("Paroolihaldur");
         primaryStage.show();
     }
 
