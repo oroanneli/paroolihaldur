@@ -26,7 +26,7 @@ public class LooKasutajaController {
         // sõnastik, kus on kõik olemasolevad kasutajad
         ArrayList<Kasutaja> kasutajad = FailiTootlus.loeKasutajad("meistrid.txt");
 
-        try {
+        try { // kontrollib kas väljad on täidetud
             kasVäljadTäidetud(kasutajanimi,parool1,parool2);
         } catch (Exception e){
             errorLabel.setText(e.getMessage());
@@ -73,6 +73,7 @@ public class LooKasutajaController {
         Main.primaryStage.setTitle("Paroolihaldur");
     }
 
+    // abimeetod, et kontrollida, kas väljad on kõik täidetud ja tagastab erindi kui ei ole
     private void kasVäljadTäidetud(String väli1, String väli2, String väli3) throws TühiVäliErind{
         if (väli1.isEmpty() || väli2.isEmpty() || väli3.isEmpty()) {
             throw new TühiVäliErind("Täida kõik väljad!");

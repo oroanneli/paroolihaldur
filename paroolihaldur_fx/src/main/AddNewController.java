@@ -24,7 +24,7 @@ public class AddNewController {
 
         Kasutaja aktiivneKasutaja = Sessioon.getKasutajanimi();
 
-        try {
+        try { // kontrollib kas väljad on täidetud
             kasVäljadTäidetud(allikasText,kasutajanimiText,paroolText);
         } catch (Exception e){
             errorLabel.setText(e.getMessage());
@@ -42,8 +42,9 @@ public class AddNewController {
         parool.clear();
     }
 
-    private void kasVäljadTäidetud(String allikas, String Kasutaja, String Parool) throws TühiVäliErind{
-        if (allikas.isEmpty() || Kasutaja.isEmpty() || Parool.isEmpty()) {
+    //abimeetod mis kontrollib kas väljad on täidetud ja tagastab erindi juhul kui ei ole täidetud
+    private void kasVäljadTäidetud(String väli1, String väli2, String väli3) throws TühiVäliErind{
+        if (väli1.isEmpty() || väli2.isEmpty() || väli3.isEmpty()) {
             throw new TühiVäliErind("Täida kõik väljad!");
         }
     }

@@ -12,13 +12,13 @@ import javafx.scene.layout.BorderPane;
 import java.io.IOException;
 
 public class MainController {
-    @FXML private BorderPane mainBorderPane;
-    @FXML private Button allItems, addNew, generate, logOut, shutDown, genereeriParool;
-    private Kasutaja kasutajaM;
+    @FXML private BorderPane mainBorderPane; // BorderPane kus peal asuvad menüüriba ja vaheaknad
+    @FXML private Button allItems, addNew, generate, logOut, shutDown, genereeriParool; // nupud, mis seadistatakse selles klassis
+    private Kasutaja kasutajaM; // sisse logitud kasutaja objekt. MainControlleri kasutajaisend
     @FXML private Spinner<Integer> GPPikkus; // genereeritud parooli pikkus
-    @FXML private TextField genereeritudParool;
+    @FXML private TextField genereeritudParool; // tekstiväli kuhu läheb genereeritud parool
 
-    public void setCurrentUserM(Kasutaja kasutaja) throws IOException {
+    public void setCurrentUserM(Kasutaja kasutaja) throws IOException { // määrab mainControlleris kasutaja
         this.kasutajaM = kasutaja;
         loadAccordionView();
         //System.out.println(currentUser);
@@ -32,6 +32,7 @@ public class MainController {
         }
     }
 
+    // seadistab ülesse iga nupu funktsiooni ja laeb ülesse vahelehed
     @FXML
     public void handleButtonClick(ActionEvent event) throws IOException {
         if (event.getSource() == allItems) {
@@ -42,16 +43,16 @@ public class MainController {
             loadCenter("/FXML/Generate.fxml");
         } else if (event.getSource() == logOut) {
             handleSwitchButton();
-        } else if (event.getSource() == genereeriParool) {
-            int pikkus = GPPikkus.getValue();
-            String parool = ParooliGeneraator.genereeriParool(pikkus);
-            genereeritudParool.setText(parool);
+        } else if (event.getSource() == genereeriParool) { // genereerimise vahe akna funktsioon
+            int pikkus = GPPikkus.getValue(); // loeb parooli pikkuse
+            String parool = ParooliGeneraator.genereeriParool(pikkus); // kutsub välja genereeriparool funktsiooni
+            genereeritudParool.setText(parool); // väljastab parooli kasutajale
         } else if (event.getSource() == shutDown) {
             Platform.exit();
         }
     }
 
-    private void loadAccordionView() throws IOException {
+    private void loadAccordionView() throws IOException { // laeb ülesse akkordioniga vaheakna kus on näha kõik paroolid
         FXMLLoader laeDisain = new FXMLLoader(getClass().getResource("/FXML/AccordionContent.fxml"));
         Parent view = laeDisain.load();
         AccordionController akordion = laeDisain.getController();
@@ -60,10 +61,9 @@ public class MainController {
             akordion.setCurrentUserA(kasutajaM);
             mainBorderPane.setCenter(view);
         }
-        Main.primaryStage.setWidth(700.0);
     }
 
-    private void loadCenter(String fxmlPath) throws IOException {
+    private void loadCenter(String fxmlPath) throws IOException { // laeb ülesse muud vaheaknad
         if (getClass().getResource(fxmlPath) == null){
             System.err.println("fxml not found");
             return;
@@ -72,7 +72,7 @@ public class MainController {
         mainBorderPane.setCenter(view);
     }
 
-    private void handleSwitchButton() throws IOException {
+    private void handleSwitchButton() throws IOException { // vahetab stseeni login stseeni vastu
         Parent newRoot = FXMLLoader.load(getClass().getResource("/FXML/login.fxml"));
         Scene newScene = new Scene(newRoot);
         newScene.getStylesheets().add(getClass().getResource("/styles/styles.css").toExternalForm());
